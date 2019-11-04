@@ -5,9 +5,11 @@
  */
 package com.toko_buku.model.dao;
 
+import com.toko_buku.model.implement.implementLogin;
 import com.toko_buku.database.koneksi;
 import com.toko_buku.model.login;
-import com.toko_buku.view.FormAdmin;
+import com.toko_buku_view.admin.FormAdmin;
+import com.toko_buku.view.kasir.FormKasir;
 import com.toko_buku.view.FormLogin;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,7 +42,7 @@ public class loginDAO implements implementLogin {
                 if (userid.equals(result1.getString("userkasir")) && pass.equals(result1.getString("password"))) {
                     login.setUserid(userid);
                     login.setPass(pass);
-                    new FormAdmin().setVisible(true);
+                    new FormKasir().setVisible(true);
                 }
             } else {
                 new FormLogin().setVisible(true);

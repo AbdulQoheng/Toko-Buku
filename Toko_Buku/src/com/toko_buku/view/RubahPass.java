@@ -16,9 +16,7 @@ public class RubahPass extends javax.swing.JFrame {
      */
     public RubahPass() {
         initComponents();
-        setLocation(400, 250);
-
-        
+              
     }
 
     /**

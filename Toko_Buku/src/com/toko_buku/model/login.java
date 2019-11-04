@@ -27,9 +27,6 @@ public class login {
 
     public static void setPass(String pass) {
         login.pass = pass;
-    }
-    
-    
-        
+    }    
     
 }

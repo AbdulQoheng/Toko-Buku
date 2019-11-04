@@ -10,52 +10,49 @@ package com.toko_buku.model;
  * @author qoheng
  */
 public class user {
-    private static String userid;
-    private static String nama;
-    private static String ttl;
-    private static String bagianuser;
-    private static String password;
+    private String userid;
+    private String nama;
+    private String ttl;
+    private String bagianuser;
+    private String password;
 
-    public static String getUserid() {
+    public String getUserid() {
         return userid;
     }
 
-    public static void setUserid(String userid) {
-        user.userid = userid;
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
-    public static String getNama() {
+    public String getNama() {
         return nama;
     }
 
-    public static void setNama(String nama) {
-        user.nama = nama;
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
-    public static String getTtl() {
+    public String getTtl() {
         return ttl;
     }
 
-    public static void setTtl(String ttl) {
-        user.ttl = ttl;
+    public void setTtl(String ttl) {
+        this.ttl = ttl;
     }
 
-    public static String getBagianuser() {
+    public String getBagianuser() {
         return bagianuser;
     }
 
-    public static void setBagianuser(String bagianuser) {
-        user.bagianuser = bagianuser;
+    public void setBagianuser(String bagianuser) {
+        this.bagianuser = bagianuser;
     }
 
-    public static String getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public static void setPassword(String password) {
-        user.password = password;
+    public void setPassword(String password) {
+        this.password = password;
     }
-    
-    
-    
 }
