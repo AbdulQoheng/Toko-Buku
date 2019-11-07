@@ -11,11 +11,13 @@ import com.toko_buku.model.login;
 import com.toko_buku.model.user;
 import com.toko_buku_view.admin.FormAdmin;
 import com.toko_buku.view.FormLogin;
+import com.toko_buku.view.RubahPass;
 import com.toko_buku_view.admin.Buku;
 import com.toko_buku_view.admin.Kasir;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -50,6 +52,7 @@ public class adminController extends user{
         adminpanel.getTxt_nama().setText(list.get(0).getNama());
         adminpanel.getTxt_tanggallahir().setText(list.get(0).getTtl());
         adminpanel.getTxt_pass().setText(list.get(0).getPassword());
+        adminpanel.getTxt_pass().setEnabled(false);
     }
     
     public void tombollihatkasir(){
@@ -64,6 +67,17 @@ public class adminController extends user{
     
     public void logout(){
         new FormLogin().setVisible(true);
+        adminpanel.setVisible(false);
+        login.userid = null;
+        login.pass = null;
+    }
+    
+    public void lihatpass(){
+        JOptionPane.showMessageDialog(null, "Password anda : "+adminpanel.getTxt_pass().getText());
+    }
+    
+    public void rubahpass(){
+        new RubahPass().setVisible(true);
         adminpanel.setVisible(false);
     }
     

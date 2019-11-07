@@ -9,9 +9,8 @@ package com.toko_buku.model.implement;
  *
  * @author qoheng
  */
-public interface implementLogin {
+public interface implementRubahPass {
     
-    public int masuk (String userid, String pass);
-    
+    public int rubahpass (String userid, String passbaru);
     
 }

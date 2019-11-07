@@ -5,19 +5,42 @@
  */
 package com.toko_buku.view;
 
+import com.toko_buku.controller.RubahPassController;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+
 /**
  *
  * @author qoheng
  */
 public class RubahPass extends javax.swing.JFrame {
-
+      private RubahPassController rubahController;
     /**
      * Creates new form RubahPass
      */
     public RubahPass() {
         initComponents();
-              
+        rubahController = new RubahPassController(this);
     }
+
+    public JPasswordField getPassBaru() {
+        return PassBaru;
+    }
+
+    public JPasswordField getPassKon() {
+        return PassKon;
+    }
+
+    public JLabel getTxt_user() {
+        return Txt_user;
+    }
+
+    public JPasswordField getPasLama() {
+        return pasLama;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,10 +56,10 @@ public class RubahPass extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jPasswordField2 = new javax.swing.JPasswordField();
-        jPasswordField3 = new javax.swing.JPasswordField();
+        Txt_user = new javax.swing.JLabel();
+        pasLama = new javax.swing.JPasswordField();
+        PassBaru = new javax.swing.JPasswordField();
+        PassKon = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -45,19 +68,25 @@ public class RubahPass extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel1.setText("Rubah Password");
 
-        jLabel2.setText("jLabel2");
+        jLabel2.setText("UserId");
 
-        jLabel3.setText("jLabel3");
+        jLabel3.setText("Password Lama");
 
-        jLabel4.setText("jLabel4");
+        jLabel4.setText("Password Baru");
 
-        jLabel5.setText("jLabel5");
+        jLabel5.setText("Konfirmasi");
 
-        jLabel6.setText("jLabel6");
+        Txt_user.setText("Txt_user");
 
-        jPasswordField3.addActionListener(new java.awt.event.ActionListener() {
+        pasLama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField3ActionPerformed(evt);
+                pasLamaActionPerformed(evt);
+            }
+        });
+
+        PassKon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PassKonActionPerformed(evt);
             }
         });
 
@@ -94,16 +123,16 @@ public class RubahPass extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel6)
-                                .addComponent(jPasswordField1)
-                                .addComponent(jPasswordField2)
-                                .addComponent(jPasswordField3, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
+                                .addComponent(Txt_user)
+                                .addComponent(pasLama)
+                                .addComponent(PassBaru)
+                                .addComponent(PassKon, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,19 +142,19 @@ public class RubahPass extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel6))
+                    .addComponent(Txt_user))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pasLama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PassBaru, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jPasswordField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PassKon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -136,18 +165,24 @@ public class RubahPass extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPasswordField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField3ActionPerformed
+    private void PassKonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PassKonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField3ActionPerformed
+    }//GEN-LAST:event_PassKonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        rubahController.rubah();
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:        
+        // TODO add your handling code here:
+        rubahController.kembali();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void pasLamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasLamaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pasLamaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,6 +220,9 @@ public class RubahPass extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField PassBaru;
+    private javax.swing.JPasswordField PassKon;
+    private javax.swing.JLabel Txt_user;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -192,9 +230,6 @@ public class RubahPass extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JPasswordField jPasswordField3;
+    private javax.swing.JPasswordField pasLama;
     // End of variables declaration//GEN-END:variables
 }

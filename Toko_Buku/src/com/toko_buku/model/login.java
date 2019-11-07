@@ -12,6 +12,8 @@ package com.toko_buku.model;
 public class login {
     public static String userid;
     public static String pass;
+    public static String bagian;
+    
 
     public static String getUserid() {
         return userid;
@@ -28,5 +30,15 @@ public class login {
     public static void setPass(String pass) {
         login.pass = pass;
     }    
+
+    public static String getBagian() {
+        return bagian;
+    }
+
+    public static void setBagian(String bagian) {
+        login.bagian = bagian;
+    }
+    
+    
     
 }

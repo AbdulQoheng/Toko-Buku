@@ -10,8 +10,11 @@ import com.toko_buku.model.implement.implementLogin;
 import com.toko_buku.model.dao.loginDAO;
 import com.toko_buku.model.login;
 import com.toko_buku.view.FormLogin;
+import com.toko_buku.view.kasir.FormKasir;
+import com.toko_buku_view.admin.FormAdmin;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -36,8 +39,17 @@ public class loginController extends login{
     }
     
     public void masuk(){
-        implementLogin.masuk(loginPanel.getUserText().getText(), loginPanel.getPassText().getText());     
-        loginPanel.setVisible(false);
+        if(implementLogin.masuk(loginPanel.getUserText().getText(), loginPanel.getPassText().getText()) == 1){
+            JOptionPane.showMessageDialog(null, "Login Sukses");
+            new FormAdmin().setVisible(true);
+            loginPanel.setVisible(false);
+        }else if(implementLogin.masuk(loginPanel.getUserText().getText(), loginPanel.getPassText().getText()) == 2){
+            JOptionPane.showMessageDialog(null, "Login Sukses");
+            new FormKasir().setVisible(true);
+            loginPanel.setVisible(false);
+        }else{
+            JOptionPane.showMessageDialog(null, "Periksa Kembali User dan Password");
+        }
     
     }
     

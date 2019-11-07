@@ -22,7 +22,8 @@ import java.sql.Statement;
 public class loginDAO implements implementLogin {
 
     @Override
-    public void masuk(String userid, String pass) {
+    public int masuk(String userid, String pass) {
+        int nilai = 0;
         try {
 
             com.mysql.jdbc.Connection conn = (com.mysql.jdbc.Connection) koneksi.koneksiDB();
@@ -35,21 +36,23 @@ public class loginDAO implements implementLogin {
                 if (userid.equals(result.getString("useradmin")) && pass.equals(result.getString("password"))) {
                     login.setUserid(userid);
                     login.setPass(pass);
-                    new FormAdmin().setVisible(true);
+                    login.setBagian("admin");
+                    nilai = 1;
+                    
                 }
 
             } else if (result1.next()) {
                 if (userid.equals(result1.getString("userkasir")) && pass.equals(result1.getString("password"))) {
                     login.setUserid(userid);
                     login.setPass(pass);
-                    new FormKasir().setVisible(true);
+                    login.setBagian("kasir");
+                    nilai = 2;
                 }
-            } else {
-                new FormLogin().setVisible(true);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return nilai;
     }
 
 }
