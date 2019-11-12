@@ -112,6 +112,11 @@ public class FormAdmin extends javax.swing.JFrame {
         label_pass.setText("Password");
 
         jButton3.setText("Lihat penjualan");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Rubah Password");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -267,6 +272,11 @@ public class FormAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         admincontroller.lihatpass();
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        admincontroller.tombollihatpenjualan();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

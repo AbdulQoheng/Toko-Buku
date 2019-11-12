@@ -5,17 +5,15 @@
  */
 package com.toko_buku.model.implement;
 
-import com.toko_buku.model.user;
+import com.toko_buku.model.penjualan;
 import java.util.List;
 
 /**
  *
  * @author qoheng
  */
-public interface implementkasir {
+public interface implementPenjualan {
     
-    public List<user> getAllkasir();
-
-    public List<user> getcari(String userkasir);
+    public List<penjualan> getAllpenjualan(); 
     
 }

@@ -14,6 +14,7 @@ import com.toko_buku.view.FormLogin;
 import com.toko_buku.view.RubahPass;
 import com.toko_buku_view.admin.Buku;
 import com.toko_buku_view.admin.Kasir;
+import com.toko_buku_view.admin.Penjualan;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.List;
@@ -83,5 +84,10 @@ public class adminController extends user{
     
     public void keluar(){
         System.exit(0);
+    }
+
+    public void tombollihatpenjualan() {
+        new Penjualan().setVisible(true);
+        adminpanel.setVisible(false);
     }
 }

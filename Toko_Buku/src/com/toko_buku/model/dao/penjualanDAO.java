@@ -5,9 +5,9 @@
  */
 package com.toko_buku.model.dao;
 
-import com.toko_buku.model.implement.implementkasir;
 import com.toko_buku.database.koneksi;
-import com.toko_buku.model.user;
+import com.toko_buku.model.implement.implementPenjualan;
+import com.toko_buku.model.penjualan;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,26 +18,26 @@ import java.util.List;
  *
  * @author qoheng
  */
-public class kasirDAO implements implementkasir {
-
-    private List<user> list;
+public class penjualanDAO implements implementPenjualan{
+    
+    private List<penjualan> list;
 
     @Override
-    public List<user> getAllkasir() {
-        list = new ArrayList<user>();
+    public List<penjualan> getAllpenjualan() {
+        list = new ArrayList<penjualan>();
         try {
             
             com.mysql.jdbc.Connection conn = (com.mysql.jdbc.Connection) koneksi.koneksiDB();
             Statement stmt = conn.createStatement();
-            ResultSet result = stmt.executeQuery("select* from kasir");
+            ResultSet result = stmt.executeQuery("select* from struk");
 
             while (result.next()) {
-                user user = new user();
-                user.setUserid(result.getString("userkasir"));
-                user.setNama(result.getString("nama"));
-                user.setTtl(result.getString("ttl"));
-                user.setPassword(result.getString("password"));
-                list.add(user);
+                penjualan penjualan = new penjualan();
+                penjualan.setKodeStruk(result.getString("kodestruk"));
+                penjualan.setTanggal(result.getString("tanggal"));
+                penjualan.setWaktu(result.getString("waktu"));
+                penjualan.setUserKasir(result.getString("userkasir"));
+                list.add(penjualan);
             }
 
             return list;
@@ -48,10 +48,5 @@ public class kasirDAO implements implementkasir {
         }
         
     }
-
-    @Override
-    public List<user> getcari(String userkasir) {
-        
-    }
-
+    
 }

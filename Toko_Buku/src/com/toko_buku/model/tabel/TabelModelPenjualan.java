@@ -5,7 +5,7 @@
  */
 package com.toko_buku.model.tabel;
 
-import com.toko_buku.model.user;
+import com.toko_buku.model.penjualan;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -13,14 +13,16 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author qoheng
  */
-public class TabelModelKasir extends AbstractTableModel {
-    private List<user> list;
+public class TabelModelPenjualan extends AbstractTableModel {
+    private List<penjualan> list;
 
-    public TabelModelKasir(List<user> list) {
+    public TabelModelPenjualan(List<penjualan> list) {
         this.list = list;
     }
-
-    @Override
+    
+    
+    
+   @Override
     public int getRowCount() {
         return list.size();
     }
@@ -34,13 +36,13 @@ public class TabelModelKasir extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return list.get(rowIndex).getUserid();
+                return list.get(rowIndex).getKodeStruk();
             case 1:
-                return list.get(rowIndex).getNama();
+                return list.get(rowIndex).getTanggal();
             case 2:
-                return list.get(rowIndex).getTtl();
+                return list.get(rowIndex).getWaktu();
             case 3:
-                return list.get(rowIndex).getPassword();
+                return list.get(rowIndex).getUserKasir();
             default:
                 return null;
         }
@@ -50,16 +52,16 @@ public class TabelModelKasir extends AbstractTableModel {
     public String getColumnName(int column) {
         switch (column) {
             case 0:
-                return "USER ID";
+                return "Kode Struk";
             case 1:
-                return "NAMA";
+                return "Tanggal";
             case 2:
-                return "TTL";
+                return "Waktu";
             case 3:
-                return "PASSWORD";
+                return "User Kasir";
             default:
                 return null;
         }
     }
-
+    
 }

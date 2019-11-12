@@ -19,7 +19,7 @@ import java.sql.Statement;
  *
  * @author qoheng
  */
-public class loginDAO implements implementLogin {
+public class loginDAO extends login implements implementLogin {
 
     @Override
     public int masuk(String userid, String pass) {

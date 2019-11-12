@@ -15,27 +15,27 @@ public class login {
     public static String bagian;
     
 
-    public static String getUserid() {
+    protected static String getUserid() {
         return userid;
     }
 
-    public static void setUserid(String userid) {
+    protected static void setUserid(String userid) {
         login.userid = userid;
     }
 
-    public static String getPass() {
+    protected static String getPass() {
         return pass;
     }
 
-    public static void setPass(String pass) {
+    protected static void setPass(String pass) {
         login.pass = pass;
     }    
 
-    public static String getBagian() {
+    protected static String getBagian() {
         return bagian;
     }
 
-    public static void setBagian(String bagian) {
+    protected static void setBagian(String bagian) {
         login.bagian = bagian;
     }
     
