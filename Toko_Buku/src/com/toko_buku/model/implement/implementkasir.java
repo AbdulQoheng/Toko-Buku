@@ -16,6 +16,14 @@ public interface implementkasir {
     
     public List<user> getAllkasir();
 
-    public List<user> getcari(String userkasir);
+    public List<user> getcari(String userkasir, String nama, String ttl, String pass);
+
+    public void insert(String userkasir, String nama, String ttl, String pass);
+
+    public int jumlahdata();
+
+    public void delete(String userid);
+
+    public void update(String userkasir, String nama, String ttl, String pass);
     
 }

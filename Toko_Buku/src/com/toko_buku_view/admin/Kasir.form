@@ -44,8 +44,8 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="txt_userid" max="32767" attributes="0"/>
                           <Component id="txt_nama" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txt_ttl" alignment="0" max="32767" attributes="0"/>
                           <Component id="txt_pass" pref="200" max="32767" attributes="0"/>
+                          <Component id="jtanggal" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -55,7 +55,10 @@
                           <Component id="jButton4" alignment="0" pref="93" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btn_rubah" min="-2" pref="81" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btn_rubah" pref="81" max="32767" attributes="0"/>
+                          <Component id="jButton1" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
@@ -78,22 +81,22 @@
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txt_userid" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_cari" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txt_nama" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_daftar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_rubah" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txt_nama" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btn_daftar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txt_ttl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btn_hapus" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_hapus" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtanggal" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -145,8 +148,6 @@
     <Component class="javax.swing.JTextField" name="txt_userid">
     </Component>
     <Component class="javax.swing.JTextField" name="txt_nama">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txt_ttl">
     </Component>
     <Component class="javax.swing.JTextField" name="txt_pass">
     </Component>
@@ -213,6 +214,16 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_rubahActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Segarkan"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="jtanggal">
     </Component>
   </SubComponents>
 </Form>

@@ -24,6 +24,7 @@ public class BukuController {
     private List<buku> list;
     private Buku bukupanel;
     private implementBuku implementbuku;
+    private int databaru = 0;
     
     public BukuController(Buku bukupanel){
         this.bukupanel = bukupanel;    
@@ -34,13 +35,69 @@ public class BukuController {
     }
     
     public void lokasiform(){
-        int x = layar.width / 2  -bukupanel.getSize().width / 2;
+        int x = layar.width / 2  - bukupanel.getSize().width / 2;
         int y = layar.height / 2 - bukupanel.getSize().height / 2;
         bukupanel.setLocation(x, y);
     }
     
-    public void komponen(String komponen){
-        
+    public void komponen(String action) {
+        switch (action) {
+            case "awal":
+                bukupanel.getBtn_cari().setEnabled(true);
+                bukupanel.getBtn_databaru().setEnabled(true);
+                bukupanel.getBtn_hapus().setEnabled(false);
+                bukupanel.getBtn_rubah().setEnabled(false);
+                break;
+            case "cari":
+                bukupanel.getBtn_cari().setEnabled(true);
+                bukupanel.getBtn_databaru().setEnabled(false);
+                bukupanel.getBtn_hapus().setEnabled(false);
+                bukupanel.getBtn_rubah().setEnabled(false);
+                break;
+            case "segarkan":
+                bukupanel.getBtn_cari().setEnabled(true);
+                bukupanel.getBtn_databaru().setEnabled(true);
+                bukupanel.getBtn_hapus().setEnabled(false);
+                bukupanel.getBtn_rubah().setEnabled(false);
+                bukupanel.getTxt_kodebuku().setEnabled(true);
+                bukupanel.getTxt_kodebuku().setText(null);
+                bukupanel.getTxt_nama().setText(null);
+                bukupanel.getTxt_jenis().setText(null);
+                bukupanel.getTxt_harga().setText(null);
+                bukupanel.getTxt_stok().setText(null);
+                databaru = 0;
+                break;
+
+            case "simpan":
+                bukupanel.getBtn_cari().setEnabled(true);
+                bukupanel.getBtn_databaru().setEnabled(true);
+                bukupanel.getBtn_hapus().setEnabled(false);
+                bukupanel.getBtn_rubah().setEnabled(false);
+                break;
+
+            case "klik":
+                bukupanel.getTxt_kodebuku().setEnabled(false);
+                bukupanel.getBtn_cari().setEnabled(false);
+                bukupanel.getBtn_databaru().setEnabled(false);
+                bukupanel.getBtn_hapus().setEnabled(true);
+                bukupanel.getBtn_rubah().setEnabled(true);
+                databaru = 0;
+                break;
+
+                
+            case "databaru":
+                bukupanel.getBtn_cari().setEnabled(false);
+                bukupanel.getBtn_databaru().setEnabled(true);
+                bukupanel.getBtn_hapus().setEnabled(false);
+                bukupanel.getBtn_rubah().setEnabled(false);
+                bukupanel.getTxt_kodebuku().setEnabled(false);
+                bukupanel.getTxt_kodebuku().setText(null);
+                bukupanel.getTxt_nama().setText(null);
+                bukupanel.getTxt_jenis().setText(null);
+                bukupanel.getTxt_harga().setText(null);
+                bukupanel.getTxt_stok().setText(null);
+
+        }
     } 
     
     public void isitabel(){
@@ -50,6 +107,7 @@ public class BukuController {
     }
     
     public void kliktabel(java.awt.event.MouseEvent evt){
+        komponen("klik");
         
         try {
             

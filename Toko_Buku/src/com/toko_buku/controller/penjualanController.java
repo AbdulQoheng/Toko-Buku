@@ -66,7 +66,7 @@ public class penjualanController {
             
 
             penjualanpanel.getTxt_idStruk().setText(String.valueOf(idstruk));
-            penjualanpanel.getjTanggal_txt().setDate(date);
+//            penjualanpanel.getjTanggal_txt().setDate(date);
             penjualanpanel.getTxt_waktu().setText(String.valueOf(waktu));
             penjualanpanel.getTxt_userkasir().setText(String.valueOf(userkasir));
             

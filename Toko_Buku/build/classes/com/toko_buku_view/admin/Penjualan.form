@@ -61,8 +61,8 @@
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="txt_userkasir" min="-2" pref="132" max="-2" attributes="0"/>
-                                          <Component id="jTanggal_txt" alignment="0" min="-2" pref="224" max="-2" attributes="0"/>
                                           <Component id="txt_waktu" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txt_tanggal" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
@@ -99,11 +99,11 @@
                   <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTanggal_txt" alignment="0" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_tanggal" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txt_waktu" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -113,7 +113,7 @@
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txt_userkasir" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="22" max="32767" attributes="0"/>
+              <EmptySpace pref="39" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btn_kembali" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_cari" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -200,8 +200,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_idStrukActionPerformed"/>
       </Events>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="jTanggal_txt">
-    </Component>
     <Component class="javax.swing.JButton" name="btn_cari">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cari"/>
@@ -217,7 +215,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ditail"/>
+        <Property name="text" type="java.lang.String" value="Detel"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
@@ -228,6 +226,11 @@
     <Component class="javax.swing.JLabel" name="txt_waktu">
       <Properties>
         <Property name="text" type="java.lang.String" value="waktu"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="txt_tanggal">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tanggal"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -5,6 +5,7 @@
  */
 package com.toko_buku_view.admin;
 
+import com.toedter.calendar.JDateChooser;
 import com.toko_buku.controller.kasirController;
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -33,8 +34,8 @@ public class Kasir extends javax.swing.JFrame {
         return txt_pass;
     }
 
-    public JTextField getTxt_ttl() {
-        return txt_ttl;
+    public JDateChooser getJtanggal() {
+        return jtanggal;
     }
 
     public JTextField getTxt_userid() {
@@ -61,10 +62,6 @@ public class Kasir extends javax.swing.JFrame {
         return btn_rubah;
     }
     
-    
-    
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,7 +79,6 @@ public class Kasir extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txt_userid = new javax.swing.JTextField();
         txt_nama = new javax.swing.JTextField();
-        txt_ttl = new javax.swing.JTextField();
         txt_pass = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabelkasir = new javax.swing.JTable();
@@ -91,6 +87,8 @@ public class Kasir extends javax.swing.JFrame {
         btn_hapus = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         btn_rubah = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jtanggal = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -159,6 +157,13 @@ public class Kasir extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Segarkan");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -181,8 +186,8 @@ public class Kasir extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txt_userid)
                             .addComponent(txt_nama)
-                            .addComponent(txt_ttl)
-                            .addComponent(txt_pass, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                            .addComponent(txt_pass, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                            .addComponent(jtanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btn_cari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -190,7 +195,9 @@ public class Kasir extends javax.swing.JFrame {
                             .addComponent(btn_hapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_rubah, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btn_rubah, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -208,19 +215,20 @@ public class Kasir extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(txt_userid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_cari)
-                    .addComponent(btn_rubah))
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_nama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_daftar)
+                    .addComponent(btn_rubah)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txt_nama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_daftar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txt_ttl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_hapus)))
+                    .addComponent(btn_hapus)
+                    .addComponent(jtanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel5)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
@@ -242,6 +250,7 @@ public class Kasir extends javax.swing.JFrame {
 
     private void btn_daftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_daftarActionPerformed
         // TODO add your handling code here:
+        kasircontroller.tomboldaftar();
        
     }//GEN-LAST:event_btn_daftarActionPerformed
 
@@ -252,18 +261,24 @@ public class Kasir extends javax.swing.JFrame {
 
     private void btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusActionPerformed
         // TODO add your handling code here:
-        kasircontroller.komponen("awal");
+        kasircontroller.tombolhapus();
     }//GEN-LAST:event_btn_hapusActionPerformed
 
     private void btn_cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cariActionPerformed
         // TODO add your handling code here:
-        kasircontroller.komponen("cari");
+        kasircontroller.tombolcari();
     }//GEN-LAST:event_btn_cariActionPerformed
 
     private void btn_rubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rubahActionPerformed
         // TODO add your handling code here:
-        kasircontroller.komponen("awal");
+        kasircontroller.tombolrubah();
+        
     }//GEN-LAST:event_btn_rubahActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        kasircontroller.komponen("segarkan");
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -306,6 +321,7 @@ public class Kasir extends javax.swing.JFrame {
     private javax.swing.JButton btn_daftar;
     private javax.swing.JButton btn_hapus;
     private javax.swing.JButton btn_rubah;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -314,9 +330,9 @@ public class Kasir extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private com.toedter.calendar.JDateChooser jtanggal;
     private javax.swing.JTextField txt_nama;
     private javax.swing.JTextField txt_pass;
-    private javax.swing.JTextField txt_ttl;
     private javax.swing.JTextField txt_userid;
     // End of variables declaration//GEN-END:variables
 }

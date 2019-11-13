@@ -25,9 +25,9 @@ public class Penjualan extends javax.swing.JFrame {
         controllerpenjualan = new penjualanController(this);    
     }
 
-    public JDateChooser getjTanggal_txt() {
-        return jTanggal_txt;
-    }
+//    public JDateChooser getjTanggal_txt() {
+//        return jTanggal_txt;
+//    }
 
     public JTextField getTxt_idStruk() {
         return txt_idStruk;
@@ -67,12 +67,12 @@ public class Penjualan extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txt_userkasir = new javax.swing.JLabel();
         txt_idStruk = new javax.swing.JTextField();
-        jTanggal_txt = new com.toedter.calendar.JDateChooser();
         btn_cari = new javax.swing.JButton();
         btn_hapus = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         txt_waktu = new javax.swing.JLabel();
+        txt_tanggal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,11 +126,13 @@ public class Penjualan extends javax.swing.JFrame {
 
         btn_hapus.setText("Hapus");
 
-        jButton1.setText("Ditail");
+        jButton1.setText("Detel");
 
         jButton2.setText("Segarkan");
 
         txt_waktu.setText("waktu");
+
+        txt_tanggal.setText("Tanggal");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,8 +169,8 @@ public class Penjualan extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txt_userkasir, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTanggal_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txt_waktu))
+                                            .addComponent(txt_waktu)
+                                            .addComponent(txt_tanggal))
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btn_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,9 +196,9 @@ public class Penjualan extends javax.swing.JFrame {
                     .addComponent(txt_idStruk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTanggal_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_tanggal))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -205,7 +207,7 @@ public class Penjualan extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txt_userkasir))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_kembali)
                     .addComponent(btn_cari)
@@ -281,8 +283,8 @@ public class Penjualan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private com.toedter.calendar.JDateChooser jTanggal_txt;
     private javax.swing.JTextField txt_idStruk;
+    private javax.swing.JLabel txt_tanggal;
     private javax.swing.JLabel txt_userkasir;
     private javax.swing.JLabel txt_waktu;
     // End of variables declaration//GEN-END:variables

@@ -13,7 +13,10 @@ import com.toko_buku_view.admin.FormAdmin;
 import com.toko_buku_view.admin.Kasir;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,6 +28,7 @@ public class kasirController extends user {
     private List<user> list;
     private static Kasir kasirpanel;
     private implementkasir implementkasir;
+    private int daftar = 0;
 
     public kasirController(Kasir kasirpanel) {
         this.kasirpanel = kasirpanel;
@@ -38,11 +42,11 @@ public class kasirController extends user {
         int x = layar.width / 2 - kasirpanel.getSize().width / 2;
         int y = layar.height / 2 - kasirpanel.getSize().height / 2;
         kasirpanel.setLocation(x, y);
+        komponen("awal");
     }
-    
-       
-    public void komponen(String action){
-        switch(action){
+
+    public void komponen(String action) {
+        switch (action) {
             case "awal":
                 kasirpanel.getBtn_cari().setEnabled(true);
                 kasirpanel.getBtn_daftar().setEnabled(true);
@@ -51,39 +55,52 @@ public class kasirController extends user {
                 break;
             case "cari":
                 kasirpanel.getBtn_cari().setEnabled(true);
+                kasirpanel.getBtn_daftar().setEnabled(false);
+                kasirpanel.getBtn_hapus().setEnabled(false);
+                kasirpanel.getBtn_rubah().setEnabled(false);
+                break;
+            case "segarkan":
+                kasirpanel.getBtn_cari().setEnabled(true);
                 kasirpanel.getBtn_daftar().setEnabled(true);
-                kasirpanel.getBtn_hapus().setEnabled(true);
-                kasirpanel.getBtn_rubah().setEnabled(true);
+                kasirpanel.getBtn_hapus().setEnabled(false);
+                kasirpanel.getBtn_rubah().setEnabled(false);
+                kasirpanel.getTxt_userid().setEnabled(true);
+                kasirpanel.getTxt_userid().setText(null);
+                kasirpanel.getTxt_nama().setText(null);
+                kasirpanel.getJtanggal().setDate(null);
+                kasirpanel.getTxt_pass().setText(null);
+                IsiTabel();
+                daftar = 0;
                 break;
-            case "refres":
-//                bt_simpan.setEnabled(true);
-//                bt_hapus.setEnabled(false);
-//                bt_edit.setEnabled(false);
-//                bt_refres.setEnabled(false);
-//                bt_nabung.setEnabled(false);
-//                bt_cari.setEnabled(true);
-//                text_id_jamaah.setEnabled(true);
-//                text_tabungan_awal.setEnabled(true);
-//                combo_tanggal_awal.setEnabled(true);
-//                combo_bulan_awal.setEnabled(true);
-//                text_tahun_awal.setEnabled(true);
-                break;
-                
+
             case "simpan":
                 kasirpanel.getBtn_cari().setEnabled(true);
                 kasirpanel.getBtn_daftar().setEnabled(true);
                 kasirpanel.getBtn_hapus().setEnabled(false);
                 kasirpanel.getBtn_rubah().setEnabled(false);
                 break;
-                
+
             case "klik":
-                kasirpanel.getBtn_cari().setEnabled(true);
-                kasirpanel.getBtn_daftar().setEnabled(true);
+                kasirpanel.getTxt_userid().setEnabled(false);
+                kasirpanel.getBtn_cari().setEnabled(false);
+                kasirpanel.getBtn_daftar().setEnabled(false);
                 kasirpanel.getBtn_hapus().setEnabled(true);
                 kasirpanel.getBtn_rubah().setEnabled(true);
+                daftar = 0;
                 break;
+
                 
-                    
+            case "daftar":
+                kasirpanel.getBtn_cari().setEnabled(false);
+                kasirpanel.getBtn_daftar().setEnabled(true);
+                kasirpanel.getBtn_hapus().setEnabled(false);
+                kasirpanel.getBtn_rubah().setEnabled(false);
+                kasirpanel.getTxt_userid().setEnabled(false);
+                kasirpanel.getTxt_userid().setText(null);
+                kasirpanel.getTxt_nama().setText(null);
+                kasirpanel.getJtanggal().setDate(null);
+                kasirpanel.getTxt_pass().setText(null);
+
         }
     }
 
@@ -95,16 +112,22 @@ public class kasirController extends user {
     public void kliktabel(java.awt.event.MouseEvent evt) {
         komponen("klik");
         try {
+            Date date = null;
             int row = kasirpanel.getTabelkasir().rowAtPoint(evt.getPoint());
 
             String userid = kasirpanel.getTabelkasir().getValueAt(row, 0).toString();
             String nama = kasirpanel.getTabelkasir().getValueAt(row, 1).toString();
             String ttl = kasirpanel.getTabelkasir().getValueAt(row, 2).toString();
+            if (ttl.equals("null")) {
+                date = null;
+            } else {
+                date = new SimpleDateFormat("dd/MM/yy").parse(ttl);
+            }
             String pass = kasirpanel.getTabelkasir().getValueAt(row, 3).toString();
 
             kasirpanel.getTxt_userid().setText(String.valueOf(userid));
             kasirpanel.getTxt_nama().setText(String.valueOf(nama));
-            kasirpanel.getTxt_ttl().setText(String.valueOf(ttl));
+            kasirpanel.getJtanggal().setDate(date);
             kasirpanel.getTxt_pass().setText(String.valueOf(pass));
 
         } catch (Exception e) {
@@ -112,10 +135,105 @@ public class kasirController extends user {
         }
     }
 
+    public void tombolcari() {
+
+        String userid = null;
+        String nama = null;
+        String ttl = null;
+        String pass = null;
+        if (kasirpanel.getTxt_userid().getText().toString().equals("")) {
+            userid = "null";
+        } else {
+            userid = kasirpanel.getTxt_userid().getText().toString();
+        }
+        if (kasirpanel.getTxt_nama().getText().toString().equals("")) {
+            nama = "null";
+        } else {
+            nama = kasirpanel.getTxt_nama().getText().toString();
+        }
+        if (kasirpanel.getJtanggal().getDate() == null) {
+            ttl = "null";
+        } else {
+            SimpleDateFormat format = new SimpleDateFormat("MM/d/yyyy");
+            ttl = (format.format(kasirpanel.getJtanggal().getDate()));
+        }
+
+        if (kasirpanel.getTxt_pass().getText().toString().equals("")) {
+            pass = "null";
+        } else {
+            pass = kasirpanel.getTxt_pass().getText().toString();
+        }
+
+        list = implementkasir.getcari(userid, nama, ttl, pass);
+
+        kasirpanel.getTabelkasir().setModel(new TabelModelKasir(list));
+
+        komponen("cari");
+    }
+
+    public void tomboldaftar() {
+
+        String userkasir = "KSR" + String.valueOf(implementkasir.jumlahdata() + 1);
+
+        if (daftar == 0) {
+            komponen("daftar");
+            JOptionPane.showMessageDialog(null, "Masukkan Data");
+            daftar = 1;
+            kasirpanel.getTxt_userid().setText(userkasir);
+
+        } else {
+            String nama = null;
+            String ttl = null;
+            String pass = null;
+
+            if (kasirpanel.getTxt_nama().getText().toString().equals("")) {
+                nama = "null";
+            } else {
+                nama = kasirpanel.getTxt_nama().getText().toString();
+            }
+            if (kasirpanel.getJtanggal().getDate() == null) {
+                ttl = "null";
+            } else {
+                SimpleDateFormat format = new SimpleDateFormat("MM/d/yyyy");
+                ttl = (format.format(kasirpanel.getJtanggal().getDate()));
+            }
+
+            if (kasirpanel.getTxt_pass().getText().toString().equals("")) {
+                pass = "null";
+            } else {
+                pass = kasirpanel.getTxt_pass().getText().toString();
+            }
+
+            implementkasir.insert(userkasir, nama, ttl, pass);
+            JOptionPane.showMessageDialog(null, "Data Telah di Tambahkan");
+
+            daftar = 0;
+            komponen("segarkan");
+
+        }
+
+    }
+
+    public void tombolhapus() {
+        implementkasir.delete(kasirpanel.getTxt_userid().getText().toString());
+        komponen("segarkan");
+    }
+
+    public void tombolrubah() {
+        String userid = kasirpanel.getTxt_userid().getText().toString();
+        String nama = kasirpanel.getTxt_nama().getText().toString();
+        SimpleDateFormat format = new SimpleDateFormat("MM/d/yyyy");
+        String ttl = (format.format(kasirpanel.getJtanggal().getDate()));
+        String pass = kasirpanel.getTxt_pass().getText().toString();
+
+        implementkasir.update(userid, nama, ttl, pass);
+        JOptionPane.showMessageDialog(null, "Data Telah di Rubah");
+        komponen("segarkan");
+    }
+
     public void tombolKembali() {
         new FormAdmin().setVisible(true);
         kasirpanel.setVisible(false);
     }
- 
 
 }
