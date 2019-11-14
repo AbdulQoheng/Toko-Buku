@@ -14,6 +14,7 @@ import com.toko_buku_view.admin.FormAdmin;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -128,6 +129,53 @@ public class BukuController {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    
+    public void tomboltambah(){
+        
+        String kodebuku = "BKU" + String.valueOf(implementbuku.jumlahdata() + 1);
+
+        if (databaru == 0) {
+            komponen("databaru");
+            JOptionPane.showMessageDialog(null, "Masukkan Data");
+            databaru = 1;
+            bukupanel.getTxt_kodebuku().setText(kodebuku);
+            
+
+        } else {
+            String nama = null;
+            String jenis = null;
+            String harga = null;
+            String stok = null;
+
+            if (bukupanel.getTxt_nama().getText().toString().equals("")) {
+                nama = "null";
+            } else {
+                nama = bukupanel.getTxt_nama().getText().toString();
+            }
+            if (bukupanel.getTxt_jenis().getText().toString().equals("")) {
+                jenis = "null";
+            } else {
+                jenis = bukupanel.getTxt_jenis().getText().toString();
+            }
+            if (bukupanel.getTxt_harga().getText().toString().equals("")) {
+                harga = "0";
+            } else {
+                harga = bukupanel.getTxt_harga().getText().toString();
+            }
+            if (bukupanel.getTxt_stok().getText().toString().equals("")) {
+                stok = "0";
+            }else{
+                stok = bukupanel.getTxt_harga().getText().toString();
+            }
+
+            implementbuku.insert(kodebuku, nama, jenis, harga, stok);
+            JOptionPane.showMessageDialog(null, "Data Telah di Tambahkan");
+
+            databaru = 0;
+            komponen("segarkan");
+
         }
     }
     

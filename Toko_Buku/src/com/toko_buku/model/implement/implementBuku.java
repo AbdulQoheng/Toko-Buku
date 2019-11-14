@@ -15,5 +15,9 @@ import java.util.List;
 public interface implementBuku {
     
     public List<buku> getAll();
+
+    public void insert(String kodebuku, String nama, String jenis, String harga, String stok);
+
+    public int jumlahdata();
     
 }

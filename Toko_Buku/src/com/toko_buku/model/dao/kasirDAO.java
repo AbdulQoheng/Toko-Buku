@@ -94,7 +94,7 @@ public class kasirDAO implements implementkasir {
             return jumlah;
         } catch (Exception e) {
             e.printStackTrace();
-            return 0;
+            return jumlah;
         }
 
     }
@@ -102,14 +102,14 @@ public class kasirDAO implements implementkasir {
     @Override
     public void insert(String userkasir, String nama, String ttl, String pass) {
         try {
-            int waktu = jumlahdata() + 1;
+            int kasirke = jumlahdata() + 1;
             String sql = "insert into kasir "
                     + " values ("
                     + "'" + userkasir + "', "
                     + "'" + nama + "',"
                     + "'" + ttl + "',"
                     + "'" + pass + "',"
-                    + "'" + waktu + "'"
+                    + "'" + kasirke + "'"
                     + ")";
 
             Connection conn = (Connection) koneksi.koneksiDB();

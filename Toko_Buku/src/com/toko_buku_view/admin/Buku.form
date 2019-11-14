@@ -223,6 +223,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Data Baru"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_databaruActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_hapus">
       <Properties>
@@ -243,6 +246,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Segarkan"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

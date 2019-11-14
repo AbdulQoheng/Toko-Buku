@@ -145,6 +145,11 @@ public class Buku extends javax.swing.JFrame {
         });
 
         btn_databaru.setText("Data Baru");
+        btn_databaru.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_databaruActionPerformed(evt);
+            }
+        });
 
         btn_hapus.setText("Hapus");
 
@@ -153,6 +158,11 @@ public class Buku extends javax.swing.JFrame {
         btn_cari.setText("Cari");
 
         jButton6.setText("Segarkan");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -262,6 +272,16 @@ public class Buku extends javax.swing.JFrame {
         // TODO add your handling code here:
         bukucontroller.tombolKembali();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btn_databaruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_databaruActionPerformed
+        // TODO add your handling code here:
+        bukucontroller.tomboltambah();
+    }//GEN-LAST:event_btn_databaruActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here
+        bukucontroller.komponen("segarkan");
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
