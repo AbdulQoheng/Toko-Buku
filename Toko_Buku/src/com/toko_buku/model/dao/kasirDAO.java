@@ -100,7 +100,7 @@ public class kasirDAO implements implementkasir {
     }
 
     @Override
-    public void insert(String userkasir, String nama, String ttl, String pass) {
+    public boolean insert(String userkasir, String nama, String ttl, String pass) {
         try {
             int kasirke = jumlahdata() + 1;
             String sql = "insert into kasir "
@@ -115,27 +115,31 @@ public class kasirDAO implements implementkasir {
             Connection conn = (Connection) koneksi.koneksiDB();
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.execute();
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
 
     @Override
-    public void delete(String userid) {
+    public boolean delete(String userid) {
         try {
             String sql = "delete from kasir where userkasir ='" + userid + "'";
 
             Connection conn = (Connection) koneksi.koneksiDB();
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.execute();
-        
+            return true;
+            
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
 
     @Override
-    public void update(String userkasir, String nama, String ttl, String pass) {
+    public boolean update(String userkasir, String nama, String ttl, String pass) {
         try {
             String sql = "update kasir set "
                     +"nama ='"+nama
@@ -146,9 +150,11 @@ public class kasirDAO implements implementkasir {
             Connection conn = (Connection) koneksi.koneksiDB();
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.execute();
-        
+            return true;
+            
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     
     }

@@ -18,12 +18,12 @@ public interface implementkasir {
 
     public List<user> getcari(String userkasir, String nama, String ttl, String pass);
 
-    public void insert(String userkasir, String nama, String ttl, String pass);
+    public boolean insert(String userkasir, String nama, String ttl, String pass);
 
     public int jumlahdata();
 
-    public void delete(String userid);
+    public boolean delete(String userid);
 
-    public void update(String userkasir, String nama, String ttl, String pass);
+    public boolean update(String userkasir, String nama, String ttl, String pass);
     
 }

@@ -7,6 +7,7 @@ package com.toko_buku_view.admin;
 
 import com.toedter.calendar.JDateChooser;
 import com.toko_buku.controller.penjualanController;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -20,23 +21,24 @@ public class Penjualan extends javax.swing.JFrame {
     /**
      * Creates new form Penjualan
      */
+    
     public Penjualan() {
         initComponents();
         controllerpenjualan = new penjualanController(this);    
     }
 
-//    public JDateChooser getjTanggal_txt() {
-//        return jTanggal_txt;
-//    }
+    public JLabel getTxt_tanggal() {
+        return txt_tanggal;
+    }
 
     public JTextField getTxt_idStruk() {
         return txt_idStruk;
     }
 
-    public JLabel getTxt_userkasir() {
-        return txt_userkasir;
+    public JTextField getTxt_user() {
+        return txt_user;
     }
-
+    
     public JTable getTabelPenjualan() {
         return TabelPenjualan;
     }
@@ -44,8 +46,18 @@ public class Penjualan extends javax.swing.JFrame {
     public JLabel getTxt_waktu() {
         return txt_waktu;
     }
-    
-    
+
+    public JButton getBtn_cari() {
+        return btn_cari;
+    }
+
+    public JButton getBtn_detail() {
+        return btn_detail;
+    }
+
+    public JButton getBtn_hapus() {
+        return btn_hapus;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,14 +77,14 @@ public class Penjualan extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txt_userkasir = new javax.swing.JLabel();
         txt_idStruk = new javax.swing.JTextField();
         btn_cari = new javax.swing.JButton();
         btn_hapus = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btn_detail = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         txt_waktu = new javax.swing.JLabel();
         txt_tanggal = new javax.swing.JLabel();
+        txt_user = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,9 +120,6 @@ public class Penjualan extends javax.swing.JFrame {
 
         jLabel6.setText("User Kasir");
 
-        txt_userkasir.setText("user");
-
-        txt_idStruk.setText("jTextField2");
         txt_idStruk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_idStrukActionPerformed(evt);
@@ -126,13 +135,29 @@ public class Penjualan extends javax.swing.JFrame {
 
         btn_hapus.setText("Hapus");
 
-        jButton1.setText("Detel");
+        btn_detail.setText("Detel");
+        btn_detail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_detailActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Segarkan");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         txt_waktu.setText("waktu");
 
         txt_tanggal.setText("Tanggal");
+
+        txt_user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_userActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,24 +178,22 @@ public class Penjualan extends javax.swing.JFrame {
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel3))
                                 .addGap(61, 61, 61)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txt_user, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txt_idStruk))
+                                        .addGap(35, 35, 35)
+                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                                 .addGap(49, 49, 49)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                     .addComponent(jLabel1)
-                                                    .addComponent(jLabel2))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(txt_idStruk)
-                                                .addGap(18, 18, 18)))
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txt_userkasir, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txt_waktu)
-                                            .addComponent(txt_tanggal))
+                                                    .addComponent(jLabel2)))
+                                            .addComponent(txt_waktu, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txt_tanggal, javax.swing.GroupLayout.Alignment.LEADING))
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btn_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -179,8 +202,9 @@ public class Penjualan extends javax.swing.JFrame {
                                 .addGap(26, 26, 26)
                                 .addComponent(btn_hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(65, 65, 65)))
+                                .addComponent(btn_detail, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(17, 17, 17)))
+                        .addGap(48, 48, 48)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -204,15 +228,15 @@ public class Penjualan extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(txt_waktu))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
-                    .addComponent(txt_userkasir))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                    .addComponent(txt_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_kembali)
                     .addComponent(btn_cari)
                     .addComponent(btn_hapus)
-                    .addComponent(jButton1))
+                    .addComponent(btn_detail))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -227,12 +251,27 @@ public class Penjualan extends javax.swing.JFrame {
 
     private void btn_cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cariActionPerformed
         // TODO add your handling code here:
+        controllerpenjualan.tombolcari();
     }//GEN-LAST:event_btn_cariActionPerformed
 
     private void TabelPenjualanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelPenjualanMouseClicked
         // TODO add your handling code here:
         controllerpenjualan.kliktabel(evt);
     }//GEN-LAST:event_TabelPenjualanMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        controllerpenjualan.komponen("segarkan");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txt_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_userActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_userActionPerformed
+
+    private void btn_detailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_detailActionPerformed
+        // TODO add your handling code here:
+        controllerpenjualan.tombolDetail();
+    }//GEN-LAST:event_btn_detailActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,9 +311,9 @@ public class Penjualan extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TabelPenjualan;
     private javax.swing.JButton btn_cari;
+    private javax.swing.JButton btn_detail;
     private javax.swing.JButton btn_hapus;
     private javax.swing.JButton btn_kembali;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -285,7 +324,7 @@ public class Penjualan extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txt_idStruk;
     private javax.swing.JLabel txt_tanggal;
-    private javax.swing.JLabel txt_userkasir;
+    private javax.swing.JTextField txt_user;
     private javax.swing.JLabel txt_waktu;
     // End of variables declaration//GEN-END:variables
 }

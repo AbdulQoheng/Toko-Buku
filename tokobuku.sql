@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 12, 2019 at 04:57 AM
+-- Generation Time: Nov 14, 2019 at 02:58 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -40,7 +40,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`useradmin`, `nama`, `ttl`, `password`) VALUES
-('ADMN51', 'ABD. Qohar Agus Maulana', '31-AGUSTUS-1997', 'farabaik');
+('ADMN51', 'ABD. Qohar Agus Maulana', '31-AGUSTUS-1997', 'jenengku');
 
 -- --------------------------------------------------------
 
@@ -51,18 +51,20 @@ INSERT INTO `admin` (`useradmin`, `nama`, `ttl`, `password`) VALUES
 CREATE TABLE `buku` (
   `kodebuku` varchar(10) NOT NULL,
   `nama_buku` varchar(20) DEFAULT NULL,
-  `jenis_buku` varchar(10) DEFAULT NULL,
+  `jenis_buku` varchar(20) DEFAULT NULL,
   `harga` int(11) DEFAULT NULL,
-  `stok` int(11) DEFAULT NULL
+  `stok` int(11) DEFAULT NULL,
+  `bukuke` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `buku`
 --
 
-INSERT INTO `buku` (`kodebuku`, `nama_buku`, `jenis_buku`, `harga`, `stok`) VALUES
-('BK01', 'Naruto', 'Komik', 5000, 20),
-('BK02', 'One Piece', 'Komik', 6000, 20);
+INSERT INTO `buku` (`kodebuku`, `nama_buku`, `jenis_buku`, `harga`, `stok`, `bukuke`) VALUES
+('BKU1', 'naruto', 'komik', 6000, 50, 1),
+('BKU2', 'naruto', 'komik', 10000, 100, 2),
+('BKU3', 'one piece', 'cerita', 50000, 10000, 3);
 
 -- --------------------------------------------------------
 
@@ -87,18 +89,21 @@ CREATE TABLE `detail_struck` (
 CREATE TABLE `kasir` (
   `userkasir` varchar(10) NOT NULL,
   `nama` varchar(30) DEFAULT NULL,
-  `ttl` varchar(20) DEFAULT NULL,
-  `password` varchar(10) DEFAULT NULL
+  `ttl` varchar(30) DEFAULT NULL,
+  `password` varchar(20) DEFAULT NULL,
+  `kasirke` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `kasir`
 --
 
-INSERT INTO `kasir` (`userkasir`, `nama`, `ttl`, `password`) VALUES
-('fasd', 'asf', 'asdf', 'adsf'),
-('KSR01', 'Ahmad Shodiqin', '08-JULI-2001', 'qwerty'),
-('KSR02', 'Ahmad Tobirin', '21-Januari-1998', 'kamu');
+INSERT INTO `kasir` (`userkasir`, `nama`, `ttl`, `password`, `kasirke`) VALUES
+('KSR2', 'Lingga Wahtu Rochim', '07/4/2000', 'jenengkudew1', 2),
+('KSR3', 'ABD. Qohar Agus Maulana', '08/30/1997', 'jenengmu', 3),
+('KSR4', 'Andy', '05/11/2019', 'jancok', 4),
+('KSR5', 'Fara', '08/3/1945', 'farabaik', 5),
+('KSR6', 'berlian', '11/7/2019', 'oke', 6);
 
 -- --------------------------------------------------------
 
@@ -110,15 +115,16 @@ CREATE TABLE `struk` (
   `kodestruk` varchar(10) NOT NULL,
   `tanggal` varchar(10) DEFAULT NULL,
   `waktu` varchar(10) DEFAULT NULL,
-  `userkasir` varchar(10) NOT NULL
+  `userkasir` varchar(10) NOT NULL,
+  `strukke` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `struk`
 --
 
-INSERT INTO `struk` (`kodestruk`, `tanggal`, `waktu`, `userkasir`) VALUES
-('01', '12/12/19', '05:23', 'KSR01');
+INSERT INTO `struk` (`kodestruk`, `tanggal`, `waktu`, `userkasir`, `strukke`) VALUES
+('STR1', '07/4/2000', '20:20', 'KSR2', 1);
 
 --
 -- Indexes for dumped tables

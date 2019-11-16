@@ -48,5 +48,31 @@ public class penjualanDAO implements implementPenjualan{
         }
         
     }
+
+    @Override
+    public List<penjualan> getcari(String idstruk, String userkasir) {
+        list = new ArrayList<penjualan>();
+        try {
+            com.mysql.jdbc.Connection conn = (com.mysql.jdbc.Connection) koneksi.koneksiDB();
+            Statement stmt = conn.createStatement();
+            ResultSet result = stmt.executeQuery("select* from struk where kodestruk like '%" 
+                    + idstruk + "%' or userkasir like '%" 
+                    + userkasir + "%'");
+
+            while (result.next()) {
+                penjualan penjualan = new penjualan();
+                penjualan.setKodeStruk(result.getString("kodestruk"));
+                penjualan.setTanggal(result.getString("tanggal"));
+                penjualan.setWaktu(result.getString("waktu"));
+                penjualan.setUserKasir(result.getString("userkasir"));
+                list.add(penjualan);
+
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     
 }

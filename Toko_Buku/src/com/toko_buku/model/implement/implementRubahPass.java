@@ -11,6 +11,6 @@ package com.toko_buku.model.implement;
  */
 public interface implementRubahPass {
     
-    public int rubahpass (String userid, String passbaru);
+    public boolean rubahpass (String userid, String passbaru);
     
 }

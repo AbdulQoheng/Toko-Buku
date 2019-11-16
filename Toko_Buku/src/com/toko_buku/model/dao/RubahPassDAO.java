@@ -19,8 +19,8 @@ import java.sql.SQLException;
 public class RubahPassDAO implements implementRubahPass{
 
     @Override
-    public int rubahpass(String userid, String passbaru) {
-        int nilai = 0;
+    public boolean rubahpass(String userid, String passbaru) {
+       
         try{
             String sql = "update admin set "
                     +"password ='"+passbaru
@@ -34,11 +34,11 @@ public class RubahPassDAO implements implementRubahPass{
 //            PreparedStatement stmt1 = conn.prepareStatement(sql1);
             stmt.execute();
 //            stmt1.execute();
-            nilai = 1;
+            return  true;
         }catch (SQLException | HeadlessException e){
             e.printStackTrace();
         }
-        return nilai;
+        return false;
     }
     
 }

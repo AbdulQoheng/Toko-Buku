@@ -7,11 +7,7 @@ package com.toko_buku.model.dao;
 
 import com.toko_buku.model.implement.implementUser;
 import com.toko_buku.database.koneksi;
-import com.toko_buku.model.login;
 import com.toko_buku.model.user;
-import com.toko_buku_view.admin.FormAdmin;
-import com.toko_buku.view.kasir.FormKasir;
-import com.toko_buku.view.FormLogin;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;

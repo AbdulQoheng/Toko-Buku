@@ -6,7 +6,6 @@
 package com.toko_buku.view;
 
 import com.toko_buku.controller.RubahPassController;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 

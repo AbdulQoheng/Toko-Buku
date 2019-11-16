@@ -15,5 +15,7 @@ import java.util.List;
 public interface implementPenjualan {
     
     public List<penjualan> getAllpenjualan(); 
+
+    public List<penjualan> getcari(String idstruk, String userkasir);
     
 }

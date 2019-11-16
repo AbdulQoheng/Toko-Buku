@@ -6,7 +6,10 @@
 package com.toko_buku_view.admin;
 
 import com.toko_buku.controller.BukuController;
+import com.toko_buku.model.login;
+import com.toko_buku.view.FormLogin;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -152,10 +155,25 @@ public class Buku extends javax.swing.JFrame {
         });
 
         btn_hapus.setText("Hapus");
+        btn_hapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_hapusActionPerformed(evt);
+            }
+        });
 
         btn_rubah.setText("Rubah");
+        btn_rubah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_rubahActionPerformed(evt);
+            }
+        });
 
         btn_cari.setText("Cari");
+        btn_cari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cariActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Segarkan");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -283,6 +301,21 @@ public class Buku extends javax.swing.JFrame {
         bukucontroller.komponen("segarkan");
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusActionPerformed
+        // TODO add your handling code here:
+        bukucontroller.tombolhapus();
+    }//GEN-LAST:event_btn_hapusActionPerformed
+
+    private void btn_rubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rubahActionPerformed
+        // TODO add your handling code here:
+        bukucontroller.tombolrubah();
+    }//GEN-LAST:event_btn_rubahActionPerformed
+
+    private void btn_cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cariActionPerformed
+        // TODO add your handling code here:
+        bukucontroller.tombolcari();
+    }//GEN-LAST:event_btn_cariActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -313,7 +346,7 @@ public class Buku extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Buku().setVisible(true);
+                new Buku().setVisible(true); 
             }
         });
     }

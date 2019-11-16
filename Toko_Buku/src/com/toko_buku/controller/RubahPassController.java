@@ -40,7 +40,7 @@ public class RubahPassController {
 
     public void rubah() {
         if (rubahpanel.getPassBaru().getText().equals(rubahpanel.getPassKon().getText())) {
-            if (implementrubah.rubahpass(rubahpanel.getTxt_user().getText(), rubahpanel.getPassBaru().getText()) == 1) {
+            if (implementrubah.rubahpass(rubahpanel.getTxt_user().getText(), rubahpanel.getPassBaru().getText())) {
                 JOptionPane.showMessageDialog(null, "Password Telah di Rubah");
                 if (login.bagian.equals("admin")) {
                     new FormAdmin().setVisible(true);
@@ -49,6 +49,8 @@ public class RubahPassController {
                     new FormKasir().setVisible(true);
                     rubahpanel.setVisible(false);
                 }
+            }else{
+                JOptionPane.showMessageDialog(null, "Periksa Kembali Password Anda");
             }
 
         } else {

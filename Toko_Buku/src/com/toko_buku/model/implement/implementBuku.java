@@ -16,8 +16,14 @@ public interface implementBuku {
     
     public List<buku> getAll();
 
-    public void insert(String kodebuku, String nama, String jenis, String harga, String stok);
+    public boolean insert(String kodebuku, String nama, String jenis, String harga, String stok);
 
     public int jumlahdata();
+
+    public boolean delete(String kodebuku);
+
+    public boolean update(String kodebuku, String nama, String jenis, String harga, String stok);
+
+    public List<buku> getcari(String kodebuku, String nama, String jenis, String harga, String stok);
     
 }

@@ -34,14 +34,12 @@ public class TabelModelDetail extends AbstractTableModel{
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return list.get(rowIndex).getIddetail();
-            case 1:
                 return list.get(rowIndex).getKodeBuku();
-            case 2:
+            case 1:
                 return list.get(rowIndex).getNamaBuku();
-            case 3:
+            case 2:
                 return list.get(rowIndex).getHarga();
-            case 4:
+            case 3:
                 return list.get(rowIndex).getTotalharga();
             default:
                 return null;
@@ -52,16 +50,14 @@ public class TabelModelDetail extends AbstractTableModel{
     public String getColumnName(int column) {
         switch (column) {
             case 0:
-                return "ID Detail";
-            case 1:
                 return "Kode Buku";
-            case 2:
+            case 1:
                 return "Nama Buku";
-            case 3:
+            case 2:
                 return "Harga";
-            case 4:
+            case 3:
                 return "Jumlah";
-            case 5:
+            case 4:
                 return "Total Harga";
             default:
                 return null;

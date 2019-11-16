@@ -32,6 +32,7 @@ public class BukuController {
         implementbuku = new bukuDAO();
         lokasiform();
         isitabel();
+        komponen("awal");
         
     }
     
@@ -67,6 +68,7 @@ public class BukuController {
                 bukupanel.getTxt_harga().setText(null);
                 bukupanel.getTxt_stok().setText(null);
                 databaru = 0;
+                isitabel();
                 break;
 
             case "simpan":
@@ -97,6 +99,7 @@ public class BukuController {
                 bukupanel.getTxt_jenis().setText(null);
                 bukupanel.getTxt_harga().setText(null);
                 bukupanel.getTxt_stok().setText(null);
+                break;
 
         }
     } 
@@ -125,7 +128,6 @@ public class BukuController {
             bukupanel.getTxt_jenis().setText(String.valueOf(jenis));
             bukupanel.getTxt_harga().setText(String.valueOf(harga));
             bukupanel.getTxt_stok().setText(String.valueOf(stok));
-            
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -179,9 +181,80 @@ public class BukuController {
         }
     }
     
+    public void tombolhapus() {
+        if(implementbuku.delete(bukupanel.getTxt_kodebuku().getText().toString())){
+            JOptionPane.showMessageDialog(null, "Data Telah Di Hapus");
+        }else{
+            JOptionPane.showMessageDialog(null, "Data Gagal Di Hapus");
+        }
+        
+        komponen("segarkan");
+    }
+    
     public void tombolKembali(){
         new FormAdmin().setVisible(true);
         bukupanel.setVisible(false);
+    }
+
+    public void tombolrubah() {
+        String kodebuku = bukupanel.getTxt_kodebuku().getText().toString();
+        String nama = bukupanel.getTxt_nama().getText().toString();
+        String jenis = bukupanel.getTxt_jenis().getText().toString();
+        String harga = bukupanel.getTxt_harga().getText().toString();
+        String stok = bukupanel.getTxt_stok().getText().toString();
+
+        if(implementbuku.update(kodebuku, nama, jenis, harga, stok)){
+            JOptionPane.showMessageDialog(null, "Data Telah di Rubah");
+            komponen("segarkan");
+        }else{
+            JOptionPane.showMessageDialog(null, "Data Gagal di Rubah");
+        }
+       
+        
+    }
+
+    public void tombolcari() {
+        
+        String kodebuku = null;
+        String nama = null;
+        String jenis = null;
+        String harga = null;
+        String stok = null;
+        if (bukupanel.getTxt_kodebuku().getText().toString().equals("")) {
+            kodebuku = "null";
+        } else {
+            kodebuku = bukupanel.getTxt_kodebuku().getText().toString();
+        }
+        if (bukupanel.getTxt_nama().getText().toString().equals("")) {
+            nama = "null";
+        } else {
+            nama = bukupanel.getTxt_nama().getText().toString();
+        }
+        if (bukupanel.getTxt_jenis().getText().toString().equals("")) {
+            jenis = "null";
+        } else {
+            jenis = bukupanel.getTxt_jenis().getText().toString();
+        }
+
+        if (bukupanel.getTxt_harga().getText().toString().equals("")) {
+            harga = "null";
+        } else {
+            harga = bukupanel.getTxt_harga().getText().toString();
+        }
+        
+        if(bukupanel.getTxt_stok().getText().toString().equals("")){
+            stok = "null";
+        }else{
+            stok = bukupanel.getTxt_stok().getText().toString();
+        }
+
+        list = implementbuku.getcari(kodebuku, nama, jenis, harga, stok);
+
+        bukupanel.getTabelbuku().setModel(new TabelModelBuku(list));
+        JOptionPane.showMessageDialog(null, "Data yang di Temukan ");
+
+        komponen("cari");
+        
     }
     
  

@@ -167,7 +167,7 @@ public class kasirController extends user {
         list = implementkasir.getcari(userid, nama, ttl, pass);
 
         kasirpanel.getTabelkasir().setModel(new TabelModelKasir(list));
-
+        JOptionPane.showMessageDialog(null, "Data yang di Temukan");
         komponen("cari");
     }
 
@@ -204,19 +204,25 @@ public class kasirController extends user {
                 pass = kasirpanel.getTxt_pass().getText().toString();
             }
 
-            implementkasir.insert(userkasir, nama, ttl, pass);
-            JOptionPane.showMessageDialog(null, "Data Telah di Tambahkan");
-
-            daftar = 0;
-            komponen("segarkan");
-
+            if(implementkasir.insert(userkasir, nama, ttl, pass)){
+                JOptionPane.showMessageDialog(null, "Data Telah di Tambahkan");
+                daftar = 0;
+                komponen("segarkan");
+            }else{
+                JOptionPane.showMessageDialog(null, "Data Gagal di Tambahkan");
+            }
+            
         }
 
     }
 
     public void tombolhapus() {
-        implementkasir.delete(kasirpanel.getTxt_userid().getText().toString());
-        komponen("segarkan");
+        if(implementkasir.delete(kasirpanel.getTxt_userid().getText().toString())){
+            JOptionPane.showMessageDialog(null, "Data Telah di Hapus");
+            komponen("segarkan");
+        }else{
+            JOptionPane.showMessageDialog(null, "Data Gagal di Hapus");
+        }
     }
 
     public void tombolrubah() {
@@ -226,9 +232,14 @@ public class kasirController extends user {
         String ttl = (format.format(kasirpanel.getJtanggal().getDate()));
         String pass = kasirpanel.getTxt_pass().getText().toString();
 
-        implementkasir.update(userid, nama, ttl, pass);
-        JOptionPane.showMessageDialog(null, "Data Telah di Rubah");
-        komponen("segarkan");
+        if(implementkasir.update(userid, nama, ttl, pass)){
+            JOptionPane.showMessageDialog(null, "Data Telah di Uubah");
+            komponen("segarkan");
+        }else{
+            JOptionPane.showMessageDialog(null, "Data Gagal di Ubah");
+        }
+        
+        
     }
 
     public void tombolKembali() {
