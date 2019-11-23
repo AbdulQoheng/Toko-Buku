@@ -10,19 +10,19 @@ package com.toko_buku.model;
  * @author qoheng
  */
 public class detail {
-    private String iddetail;
+    private static String kodestruk;
     private String kodeBuku;
     private String namaBuku;
     private String harga;
     private String jumlah;
     private String totalharga;
 
-    public String getIddetail() {
-        return iddetail;
+    public static String getKodestruk() {
+        return kodestruk;
     }
 
-    public void setIddetail(String iddetail) {
-        this.iddetail = iddetail;
+    public static void setKodestruk(String kodestruk) {
+        detail.kodestruk = kodestruk;
     }
 
     public String getKodeBuku() {
@@ -60,7 +60,12 @@ public class detail {
         return totalharga;
     }
 
-    public void setTotalharga(String totalharga) {
+    public void setTotal(){
+        int jumlah = Integer.parseInt(this.harga)*Integer.parseInt(this.jumlah);
+        this.totalharga = String.valueOf(jumlah);
+    }
+    
+    public void setTotalharga(String totalharga){
         this.totalharga = totalharga;
     }
 }

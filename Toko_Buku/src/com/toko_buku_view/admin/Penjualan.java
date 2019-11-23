@@ -134,6 +134,11 @@ public class Penjualan extends javax.swing.JFrame {
         });
 
         btn_hapus.setText("Hapus");
+        btn_hapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_hapusActionPerformed(evt);
+            }
+        });
 
         btn_detail.setText("Detel");
         btn_detail.addActionListener(new java.awt.event.ActionListener() {
@@ -272,6 +277,11 @@ public class Penjualan extends javax.swing.JFrame {
         // TODO add your handling code here:
         controllerpenjualan.tombolDetail();
     }//GEN-LAST:event_btn_detailActionPerformed
+
+    private void btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusActionPerformed
+        // TODO add your handling code here:
+        controllerpenjualan.tombolhapus();
+    }//GEN-LAST:event_btn_hapusActionPerformed
 
     /**
      * @param args the command line arguments

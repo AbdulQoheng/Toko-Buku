@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
  *
  * @author qoheng
  */
-public class adminController extends user{
+public class adminController{
     Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
     private static FormAdmin adminpanel;
     private static implementUser implementuser;
@@ -40,7 +40,7 @@ public class adminController extends user{
     }
     
     public void lokasiform(){
-        int x = layar.width / 2  -adminpanel.getSize().width / 2;
+        int x = layar.width / 2  - adminpanel.getSize().width / 2;
         int y = layar.height / 2 - adminpanel.getSize().height / 2;
         adminpanel.setLocation(x, y);
     }

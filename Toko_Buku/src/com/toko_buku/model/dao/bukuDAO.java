@@ -27,11 +27,11 @@ public class bukuDAO implements implementBuku{
     public List<buku> getAll(){
         list = new ArrayList<buku>();
         try {
+            PreparedStatement statement = koneksi.koneksiDB().prepareStatement(
+            "select* from buku");
             
-            com.mysql.jdbc.Connection conn = (com.mysql.jdbc.Connection) koneksi.koneksiDB();
-            Statement stmt = conn.createStatement();
-            ResultSet result = stmt.executeQuery("select* from buku");
-
+            ResultSet result = statement.executeQuery();
+            
             while (result.next()) {
                 buku buku = new buku();
                 buku.setKodebuku(result.getString("kodebuku"));
@@ -55,20 +55,21 @@ public class bukuDAO implements implementBuku{
     public boolean insert(String kodebuku, String nama, String jenis, String harga, String stok) {
         
         try {
+            
             int bukuke = jumlahdata() + 1;
-            String sql = "insert into buku"
-                    + " values ("
-                    + "'" + kodebuku + "',"
-                    + "'" + nama     + "',"
-                    + "'" + jenis    + "',"
-                    + "'" + harga    + "',"
-                    + "'" + stok     + "',"
-                    + "'" + bukuke   + "'"
-                    + ")";
-
-            Connection conn = (Connection) koneksi.koneksiDB();
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.execute();
+            
+            PreparedStatement statement = koneksi.koneksiDB().prepareStatement(
+            "insert into buku values (?,?,?,?,?,?)");
+            
+            statement.setString(1, kodebuku);
+            statement.setString(2, nama);
+            statement.setString(3, jenis);
+            statement.setString(4, harga);
+            statement.setString(5, stok);
+            statement.setInt(6, bukuke);
+            
+            statement.executeUpdate();
+            
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,9 +82,11 @@ public class bukuDAO implements implementBuku{
     public int jumlahdata() {
         int jumlah = 0;
         try {
-            com.mysql.jdbc.Connection conn = (com.mysql.jdbc.Connection) koneksi.koneksiDB();
-            Statement stmt = conn.createStatement();
-            ResultSet result = stmt.executeQuery("SELECT max(bukuke) as jumlah FROM buku");
+            
+            PreparedStatement statement = koneksi.koneksiDB().prepareStatement(
+            "SELECT max(bukuke) as jumlah FROM buku");
+            
+            ResultSet result = statement.executeQuery(); 
             
             if (result.next()){
                 jumlah = result.getInt("jumlah");
@@ -98,12 +101,14 @@ public class bukuDAO implements implementBuku{
 
     @Override
     public boolean delete(String kodebuku) {
+        
         try {
-            String sql = "delete from buku where kodebuku ='" + kodebuku + "'";
-
-            Connection conn = (Connection) koneksi.koneksiDB();
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.execute();
+            
+            PreparedStatement statement = koneksi.koneksiDB().prepareStatement(
+            "delete from buku where kodebuku =?");
+            
+            statement.setString(1, kodebuku);
+            statement.executeUpdate();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -114,16 +119,16 @@ public class bukuDAO implements implementBuku{
     @Override
     public boolean update(String kodebuku, String nama, String jenis, String harga, String stok) {
         try {
-            String sql = "update buku set "
-                    +"nama_buku ='"+nama
-                    +"',jenis_buku ='"+jenis
-                    +"',harga ='"+harga
-                    +"',stok ='"+stok
-                    +"'where kodebuku = '"+kodebuku+"'";
-
-            Connection conn = (Connection) koneksi.koneksiDB();
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.execute();
+            PreparedStatement statement = koneksi.koneksiDB().prepareStatement(
+            "update buku set nama_buku = ? ,jenis_buku = ? ,harga = ? ,stok = ? where kodebuku = ?");
+            
+            statement.setString(1, nama);
+            statement.setString(2, jenis);
+            statement.setString(3, harga);
+            statement.setString(4, stok);
+            statement.setString(5, kodebuku);
+            statement.executeUpdate();
+       
             return true;
         
         } catch (Exception e) {
@@ -137,14 +142,21 @@ public class bukuDAO implements implementBuku{
     public List<buku> getcari(String kodebuku, String nama, String jenis, String harga, String stok) {
         list = new ArrayList<buku>();
         try {
-            com.mysql.jdbc.Connection conn = (com.mysql.jdbc.Connection) koneksi.koneksiDB();
-            Statement stmt = conn.createStatement();
-            ResultSet result = stmt.executeQuery("select* from buku where kodebuku like '%" 
-                    + kodebuku + "%' or nama_buku like '%" 
-                    + nama + "%' or jenis_buku like '%" 
-                    + jenis + "%' or harga like '%" 
-                    + harga + "%' or stok like '%"
-                    + stok + "%'");
+            
+            PreparedStatement statement = koneksi.koneksiDB().prepareStatement(
+            "select* from buku where kodebuku like ?"
+                    + " or nama_buku like ?"
+                    + " or jenis_buku like ?"
+                    + " or harga like ?"
+                    + " or stok like ?");
+            
+            statement.setString(1, kodebuku);
+            statement.setString(2, nama);
+            statement.setString(3, jenis);
+            statement.setString(4, harga);
+            statement.setString(5, stok);
+            
+            ResultSet result = statement.executeQuery();
 
             while (result.next()) {
                 buku buku = new buku();
@@ -157,7 +169,7 @@ public class bukuDAO implements implementBuku{
 
             }
             return list;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }

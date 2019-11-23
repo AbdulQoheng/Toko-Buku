@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.toko_buku.model.implement;
+package com.toko_buku.model;
 
 /**
  *
  * @author qoheng
  */
-public interface implementLogin {
-    
-    public boolean masukadmin (String userid, String pass);
-    public boolean masukkasir (String userid, String pass);
-    
+public class tampil {
     
 }

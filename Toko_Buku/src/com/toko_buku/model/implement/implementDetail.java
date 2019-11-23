@@ -14,6 +14,8 @@ import java.util.List;
  */
 public interface implementDetail {
     
-    public List<detail> getAll();
+    public List<detail> getAll(String kodestruk);
+
+    public int getjumlah(String kodestruk);
     
 }

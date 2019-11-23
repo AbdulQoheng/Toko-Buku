@@ -8,6 +8,7 @@ package com.toko_buku.model.dao;
 import com.toko_buku.model.implement.implementLogin;
 import com.toko_buku.database.koneksi;
 import com.toko_buku.model.login;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,37 +20,47 @@ import java.sql.Statement;
 public class loginDAO extends login implements implementLogin {
 
     @Override
-    public int masuk(String userid, String pass) {
-        int nilai = 0;
+    public boolean masukadmin(String userid, String pass) {
+       
         try {
 
-            com.mysql.jdbc.Connection conn = (com.mysql.jdbc.Connection) koneksi.koneksiDB();
-            Statement stmt = conn.createStatement();
-            ResultSet result = stmt.executeQuery("select useradmin, password from admin where useradmin='" + userid + "' and password='" + pass + "'");
-            Statement stmt1 = conn.createStatement();
-            ResultSet result1 = stmt1.executeQuery("select userkasir, password from kasir where userkasir='" + userid + "' and password='" + pass + "'");
-
-            if (result.next()) {
-                if (userid.equals(result.getString("useradmin")) && pass.equals(result.getString("password"))) {
-                    login.setUserid(userid);
-                    login.setPass(pass);
-                    login.setBagian("admin");
-                    nilai = 1;
-                    
-                }
-
-            } else if (result1.next()) {
-                if (userid.equals(result1.getString("userkasir")) && pass.equals(result1.getString("password"))) {
-                    login.setUserid(userid);
-                    login.setPass(pass);
-                    login.setBagian("kasir");
-                    nilai = 2;
-                }
+            PreparedStatement statement = koneksi.koneksiDB().prepareStatement(
+            "select useradmin, password from admin where useradmin = ? and password = ?");
+            statement.setString(1, userid);
+            statement.setString(2, pass);
+            ResultSet result = statement.executeQuery();
+            
+            if (result.next()){
+                login.setUserid(userid);
+                return true;      
+            
             }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return nilai;
+        return false;
+    }
+    
+    public boolean masukkasir(String userid, String pass) {
+       
+        try {
+
+            PreparedStatement statement = koneksi.koneksiDB().prepareStatement(
+            "select userkasir, password from kasir where userkasir = ? and password = ?");
+            statement.setString(1, userid);
+            statement.setString(2, pass);
+            ResultSet result = statement.executeQuery();
+            
+            if (result.next()){
+                return true;      
+            
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }

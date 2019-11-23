@@ -28,10 +28,11 @@ public class kasirDAO implements implementkasir {
     public List<user> getAllkasir() {
         list = new ArrayList<user>();
         try {
-
-            com.mysql.jdbc.Connection conn = (com.mysql.jdbc.Connection) koneksi.koneksiDB();
-            Statement stmt = conn.createStatement();
-            ResultSet result = stmt.executeQuery("select userkasir, nama ,ttl , password from kasir ORDER BY userkasir");
+            
+            PreparedStatement statement = koneksi.koneksiDB().prepareStatement(
+            "select userkasir, nama ,ttl , password from kasir ORDER BY userkasir");
+            
+            ResultSet result = statement.executeQuery();
 
             while (result.next()) {
                 user user = new user();
@@ -55,9 +56,15 @@ public class kasirDAO implements implementkasir {
     public List<user> getcari(String userkasir, String nama, String ttl, String pass) {
         list = new ArrayList<user>();
         try {
-            com.mysql.jdbc.Connection conn = (com.mysql.jdbc.Connection) koneksi.koneksiDB();
-            Statement stmt = conn.createStatement();
-            ResultSet result = stmt.executeQuery("select* from kasir where userkasir like '%" + userkasir + "%' or nama like '%" + nama + "%' or ttl like '%" + ttl + "%' or password like '%" + pass + "%'");
+            
+            PreparedStatement statement = koneksi.koneksiDB().prepareStatement(
+            "select* from kasir "
+                    + "where userkasir like '%?%' "
+                    + "or nama like '%?%' "
+                    + "or ttl like '%?%' "
+                    + "or password like '%?%'");
+            
+            ResultSet result = statement.executeQuery();
 
             while (result.next()) {
                 user user = new user();
@@ -80,17 +87,16 @@ public class kasirDAO implements implementkasir {
     public int jumlahdata() {
         int jumlah = 0;
         try {
-            com.mysql.jdbc.Connection conn = (com.mysql.jdbc.Connection) koneksi.koneksiDB();
-            Statement stmt = conn.createStatement();
-            ResultSet result = stmt.executeQuery("SELECT max(kasirke) as jumlah FROM kasir");
+            
+            PreparedStatement statement = koneksi.koneksiDB().prepareStatement(
+            "SELECT max(kasirke) as jumlah FROM kasir");
+            
+            ResultSet result = statement.executeQuery();
             
             if (result.next()){
-                
-                jumlah = result.getInt("jumlah");
-                
+                jumlah = result.getInt("jumlah");      
             }
-            
-
+          
             return jumlah;
         } catch (Exception e) {
             e.printStackTrace();
@@ -103,18 +109,16 @@ public class kasirDAO implements implementkasir {
     public boolean insert(String userkasir, String nama, String ttl, String pass) {
         try {
             int kasirke = jumlahdata() + 1;
-            String sql = "insert into kasir "
-                    + " values ("
-                    + "'" + userkasir + "', "
-                    + "'" + nama + "',"
-                    + "'" + ttl + "',"
-                    + "'" + pass + "',"
-                    + "'" + kasirke + "'"
-                    + ")";
-
-            Connection conn = (Connection) koneksi.koneksiDB();
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.execute();
+            PreparedStatement statement = koneksi.koneksiDB().prepareStatement(
+            "insert into kasir values (?,?,?,?,?)");
+      
+            statement.setString(1, userkasir);
+            statement.setString(2, nama);
+            statement.setString(3, ttl);
+            statement.setString(4, pass);
+            statement.setInt(5, kasirke);
+            statement.executeUpdate();
+           
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -125,11 +129,13 @@ public class kasirDAO implements implementkasir {
     @Override
     public boolean delete(String userid) {
         try {
-            String sql = "delete from kasir where userkasir ='" + userid + "'";
-
-            Connection conn = (Connection) koneksi.koneksiDB();
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.execute();
+            
+            PreparedStatement statement = koneksi.koneksiDB().prepareStatement(
+            "delete from kasir where userkasir =?");
+            
+            statement.setString(1, userid);
+            
+            statement.executeUpdate();
             return true;
             
         } catch (Exception e) {
@@ -141,15 +147,16 @@ public class kasirDAO implements implementkasir {
     @Override
     public boolean update(String userkasir, String nama, String ttl, String pass) {
         try {
-            String sql = "update kasir set "
-                    +"nama ='"+nama
-                    +"',ttl ='"+ttl
-                    +"',password ='"+pass
-                    +"'where userkasir = '"+userkasir+"'";
-
-            Connection conn = (Connection) koneksi.koneksiDB();
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.execute();
+            
+            PreparedStatement statement = koneksi.koneksiDB().prepareStatement(
+            "update kasir set nama = ?, ttl = ?, password = ? where userkasir = ?");
+            
+            statement.setString(1, nama);
+            statement.setString(2, ttl);
+            statement.setString(3, pass);
+            statement.setString(4, userkasir);
+            statement.executeUpdate();
+            
             return true;
             
         } catch (Exception e) {

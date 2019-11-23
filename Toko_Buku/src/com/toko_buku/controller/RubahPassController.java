@@ -41,15 +41,16 @@ public class RubahPassController {
     public void rubah() {
         if (rubahpanel.getPassBaru().getText().equals(rubahpanel.getPassKon().getText())) {
             if (implementrubah.rubahpass(rubahpanel.getTxt_user().getText(), rubahpanel.getPassBaru().getText())) {
-                JOptionPane.showMessageDialog(null, "Password Telah di Rubah");
-                if (login.bagian.equals("admin")) {
-                    new FormAdmin().setVisible(true);
-                    rubahpanel.setVisible(false);
-                } else if (login.bagian.equals("kasir")) {
-                    new FormKasir().setVisible(true);
-                    rubahpanel.setVisible(false);
+                if (JOptionPane.showConfirmDialog(null, "Apakah Anda yakin akan menghapus dataini ?", "Warning", 2) == JOptionPane.YES_OPTION) {
+                    if (login.bagian.equals("admin")) {
+                        new FormAdmin().setVisible(true);
+                        rubahpanel.setVisible(false);
+                    } else if (login.bagian.equals("kasir")) {
+                        new FormKasir().setVisible(true);
+                        rubahpanel.setVisible(false);
+                    }
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Periksa Kembali Password Anda");
             }
 

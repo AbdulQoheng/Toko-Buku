@@ -21,27 +21,30 @@ import javax.swing.JOptionPane;
  * @author qoheng
  */
 public class BukuController {
+
     Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
     private List<buku> list;
     private Buku bukupanel;
+    private buku buku;
     private implementBuku implementbuku;
     private int databaru = 0;
-    
-    public BukuController(Buku bukupanel){
-        this.bukupanel = bukupanel;    
+
+    public BukuController(Buku bukupanel) {
+        this.bukupanel = bukupanel;
         implementbuku = new bukuDAO();
+        buku = new buku();
         lokasiform();
         isitabel();
         komponen("awal");
-        
+
     }
-    
-    public void lokasiform(){
-        int x = layar.width / 2  - bukupanel.getSize().width / 2;
+
+    public void lokasiform() {
+        int x = layar.width / 2 - bukupanel.getSize().width / 2;
         int y = layar.height / 2 - bukupanel.getSize().height / 2;
         bukupanel.setLocation(x, y);
     }
-    
+
     public void komponen(String action) {
         switch (action) {
             case "awal":
@@ -87,7 +90,6 @@ public class BukuController {
                 databaru = 0;
                 break;
 
-                
             case "databaru":
                 bukupanel.getBtn_cari().setEnabled(false);
                 bukupanel.getBtn_databaru().setEnabled(true);
@@ -102,161 +104,169 @@ public class BukuController {
                 break;
 
         }
-    } 
-    
-    public void isitabel(){
+    }
+
+    public void isitabel() {
         list = implementbuku.getAll();
         bukupanel.getTabelbuku().setModel(new TabelModelBuku(list));
-        
+
     }
-    
-    public void kliktabel(java.awt.event.MouseEvent evt){
+
+    public void kliktabel(java.awt.event.MouseEvent evt) {
         komponen("klik");
-        
+
         try {
-            
+
             int row = bukupanel.getTabelbuku().rowAtPoint(evt.getPoint());
 
-            String kode = bukupanel.getTabelbuku().getValueAt(row, 0).toString();
-            String nama = bukupanel.getTabelbuku().getValueAt(row, 1).toString();
-            String jenis = bukupanel.getTabelbuku().getValueAt(row, 2).toString();
-            String harga = bukupanel.getTabelbuku().getValueAt(row, 3).toString();
-            String stok = bukupanel.getTabelbuku().getValueAt(row, 4).toString();
+            buku.setKodebuku(bukupanel.getTabelbuku().getValueAt(row, 0).toString());
+            buku.setNama(bukupanel.getTabelbuku().getValueAt(row, 1).toString());
+            buku.setJenis(bukupanel.getTabelbuku().getValueAt(row, 2).toString());
+            buku.setHarga(bukupanel.getTabelbuku().getValueAt(row, 3).toString());
+            buku.setStok(bukupanel.getTabelbuku().getValueAt(row, 4).toString());
 
-            bukupanel.getTxt_kodebuku().setText(String.valueOf(kode));
-            bukupanel.getTxt_nama().setText(String.valueOf(nama));
-            bukupanel.getTxt_jenis().setText(String.valueOf(jenis));
-            bukupanel.getTxt_harga().setText(String.valueOf(harga));
-            bukupanel.getTxt_stok().setText(String.valueOf(stok));
+            bukupanel.getTxt_kodebuku().setText(String.valueOf(buku.getKodebuku()));
+            bukupanel.getTxt_nama().setText(String.valueOf(buku.getNama()));
+            bukupanel.getTxt_jenis().setText(String.valueOf(buku.getJenis()));
+            bukupanel.getTxt_harga().setText(String.valueOf(buku.getHarga()));
+            bukupanel.getTxt_stok().setText(String.valueOf(buku.getStok()));
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
-    public void tomboltambah(){
-        
-        String kodebuku = "BKU" + String.valueOf(implementbuku.jumlahdata() + 1);
+
+    public void tomboltambah() {
+
+        buku.setKodebuku("BKU" + String.valueOf(implementbuku.jumlahdata() + 1));
 
         if (databaru == 0) {
             komponen("databaru");
             JOptionPane.showMessageDialog(null, "Masukkan Data");
             databaru = 1;
-            bukupanel.getTxt_kodebuku().setText(kodebuku);
-            
+            bukupanel.getTxt_kodebuku().setText(buku.getKodebuku());
 
         } else {
-            String nama = null;
-            String jenis = null;
-            String harga = null;
-            String stok = null;
+            buku.setKodebuku(bukupanel.getTxt_kodebuku().getText());
+            buku.setNama(bukupanel.getTxt_nama().getText());
+            buku.setJenis(bukupanel.getTxt_jenis().getText());
+            buku.setHarga(bukupanel.getTxt_harga().getText());
+            buku.setStok(bukupanel.getTxt_stok().getText());
 
-            if (bukupanel.getTxt_nama().getText().toString().equals("")) {
-                nama = "null";
+            if (buku.getNama().equals("")) {
+                JOptionPane.showMessageDialog(null, "Maaf, Nama Buku belum diisi !");
+                bukupanel.getTxt_nama().requestFocus();
+            } else if (buku.getJenis().equals("")) {
+                JOptionPane.showMessageDialog(null, "Maaf, Jenis Buku belum diisi !");
+                bukupanel.getTxt_jenis().requestFocus();
+            } else if (buku.getHarga().equals("")) {
+                JOptionPane.showMessageDialog(null, "Maaf, Harga Buku belum diisi !");
+                bukupanel.getTxt_harga().requestFocus();
+            } else if (buku.getStok().equals("")) {
+                JOptionPane.showMessageDialog(null, "Maaf, Stok Buku belum diisi !");
+                bukupanel.getTxt_stok().requestFocus();
             } else {
-                nama = bukupanel.getTxt_nama().getText().toString();
-            }
-            if (bukupanel.getTxt_jenis().getText().toString().equals("")) {
-                jenis = "null";
-            } else {
-                jenis = bukupanel.getTxt_jenis().getText().toString();
-            }
-            if (bukupanel.getTxt_harga().getText().toString().equals("")) {
-                harga = "0";
-            } else {
-                harga = bukupanel.getTxt_harga().getText().toString();
-            }
-            if (bukupanel.getTxt_stok().getText().toString().equals("")) {
-                stok = "0";
-            }else{
-                stok = bukupanel.getTxt_harga().getText().toString();
-            }
+                if (implementbuku.insert(buku.getKodebuku(), buku.getNama(), buku.getJenis(), buku.getHarga(), buku.getStok())) {
+                    JOptionPane.showMessageDialog(null, "Data Berhasil di tambahkan " , "Informasi",JOptionPane.INFORMATION_MESSAGE);
 
-            implementbuku.insert(kodebuku, nama, jenis, harga, stok);
-            JOptionPane.showMessageDialog(null, "Data Telah di Tambahkan");
+                    databaru = 0;
+                    komponen("segarkan");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Data Gagal di tambahkan " , "Informasi",JOptionPane.INFORMATION_MESSAGE);
+                }
 
-            databaru = 0;
-            komponen("segarkan");
+            }
 
         }
     }
-    
+
     public void tombolhapus() {
-        if(implementbuku.delete(bukupanel.getTxt_kodebuku().getText().toString())){
-            JOptionPane.showMessageDialog(null, "Data Telah Di Hapus");
-        }else{
-            JOptionPane.showMessageDialog(null, "Data Gagal Di Hapus");
+        buku.setKodebuku(bukupanel.getTxt_kodebuku().getText());
+
+        if (JOptionPane.showConfirmDialog(null, "Apakah Anda yakin akan menghapus dataini ?", "Warning", 2) == JOptionPane.YES_OPTION) {
+            if (implementbuku.delete(buku.getKodebuku())) {
+                JOptionPane.showMessageDialog(null, "Data Telah Di Hapus");
+                komponen("segarkan");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data Gagal Di Hapus");
+            }
+
         }
-        
-        komponen("segarkan");
+
     }
-    
-    public void tombolKembali(){
+
+    public void tombolKembali() {
         new FormAdmin().setVisible(true);
         bukupanel.setVisible(false);
     }
 
     public void tombolrubah() {
-        String kodebuku = bukupanel.getTxt_kodebuku().getText().toString();
-        String nama = bukupanel.getTxt_nama().getText().toString();
-        String jenis = bukupanel.getTxt_jenis().getText().toString();
-        String harga = bukupanel.getTxt_harga().getText().toString();
-        String stok = bukupanel.getTxt_stok().getText().toString();
+        buku.setKodebuku(bukupanel.getTxt_kodebuku().getText());
+        buku.setNama(bukupanel.getTxt_nama().getText());
+        buku.setJenis(bukupanel.getTxt_jenis().getText());
+        buku.setHarga(bukupanel.getTxt_harga().getText());
+        buku.setStok(bukupanel.getTxt_stok().getText());
 
-        if(implementbuku.update(kodebuku, nama, jenis, harga, stok)){
-            JOptionPane.showMessageDialog(null, "Data Telah di Rubah");
-            komponen("segarkan");
-        }else{
-            JOptionPane.showMessageDialog(null, "Data Gagal di Rubah");
+        if (buku.getNama().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Nama Buku belum diisi !");
+            bukupanel.getTxt_nama().requestFocus();
+        } else if (buku.getJenis().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Jenis Buku belum diisi !");
+            bukupanel.getTxt_jenis().requestFocus();
+        } else if (buku.getHarga().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Harga Buku belum diisi !");
+            bukupanel.getTxt_harga().requestFocus();
+        } else if (buku.getStok().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Stok Buku belum diisi !");
+            bukupanel.getTxt_stok().requestFocus();
+        } else {
+            if (JOptionPane.showConfirmDialog(null, "Apakah Anda yakin akan merubah data ini ?", "Warning", 2) == JOptionPane.YES_OPTION) {
+                if (implementbuku.update(buku.getKodebuku(), buku.getNama(), buku.getJenis(), buku.getHarga(), buku.getStok())) {
+                    JOptionPane.showMessageDialog(null, "Data berhasil diubah" , "Informasi",JOptionPane.INFORMATION_MESSAGE);
+                    komponen("segarkan");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Data gagal diubah" , "Informasi",JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+
         }
-       
-        
+
     }
 
     public void tombolcari() {
         
-        String kodebuku = null;
-        String nama = null;
-        String jenis = null;
-        String harga = null;
-        String stok = null;
-        if (bukupanel.getTxt_kodebuku().getText().toString().equals("")) {
-            kodebuku = "null";
-        } else {
-            kodebuku = bukupanel.getTxt_kodebuku().getText().toString();
-        }
-        if (bukupanel.getTxt_nama().getText().toString().equals("")) {
-            nama = "null";
-        } else {
-            nama = bukupanel.getTxt_nama().getText().toString();
-        }
-        if (bukupanel.getTxt_jenis().getText().toString().equals("")) {
-            jenis = "null";
-        } else {
-            jenis = bukupanel.getTxt_jenis().getText().toString();
-        }
-
-        if (bukupanel.getTxt_harga().getText().toString().equals("")) {
-            harga = "null";
-        } else {
-            harga = bukupanel.getTxt_harga().getText().toString();
-        }
-        
-        if(bukupanel.getTxt_stok().getText().toString().equals("")){
-            stok = "null";
+        if (bukupanel.getTxt_kodebuku().getText().equals("")) {
+            buku.setKodebuku(null);
         }else{
-            stok = bukupanel.getTxt_stok().getText().toString();
+            buku.setKodebuku("%"+bukupanel.getTxt_kodebuku().getText()+"%");
+        }
+        if (bukupanel.getTxt_nama().getText().equals("")) {
+            buku.setNama(null);
+        }else{
+            buku.setNama("%"+bukupanel.getTxt_nama().getText()+"%");
+        }
+        if (bukupanel.getTxt_jenis().getText().equals("")) {
+            buku.setJenis(null);
+        }else{
+            buku.setJenis("%"+bukupanel.getTxt_jenis().getText()+"%");
+        }
+        if (bukupanel.getTxt_harga().getText().equals("")) {
+            buku.setHarga(null);
+        }else{
+            buku.setHarga("%"+bukupanel.getTxt_harga().getText()+"%");
+        } 
+        if (bukupanel.getTxt_stok().getText().equals("")) {
+            buku.setStok(null);
+        }else{
+            buku.setStok("%"+bukupanel.getTxt_stok().getText()+"%");
         }
 
-        list = implementbuku.getcari(kodebuku, nama, jenis, harga, stok);
-
+        list = implementbuku.getcari(buku.getKodebuku(), buku.getNama(), buku.getJenis(), buku.getHarga(), buku.getStok());
         bukupanel.getTabelbuku().setModel(new TabelModelBuku(list));
-        JOptionPane.showMessageDialog(null, "Data yang di Temukan ");
+        JOptionPane.showMessageDialog(null, "Data yang di Temukan "+list.size());
 
         komponen("cari");
-        
+
     }
-    
- 
-    
+
 }

@@ -9,6 +9,7 @@ import com.toko_buku.model.dao.penjualanDAO;
 import com.toko_buku_view.admin.Penjualan;
 import com.toko_buku.model.implement.implementPenjualan;
 import com.toko_buku.model.penjualan;
+import com.toko_buku.model.detail;
 import com.toko_buku.model.tabel.TabelModelPenjualan;
 import com.toko_buku_view.admin.FormAdmin;
 import com.toko_buku_view.admin.DetailPenjualan;
@@ -26,7 +27,6 @@ public class penjualanController {
     private List<penjualan> list;
     private static Penjualan penjualanpanel;
     private static implementPenjualan implementPenjualan;
-    private static String userid;
     public penjualanController(Penjualan penjualanpanel) {
         this.penjualanpanel = penjualanpanel;
         implementPenjualan = new penjualanDAO();
@@ -134,20 +134,20 @@ public class penjualanController {
         komponen("cari");
         
     }
-
+        
     public void tombolDetail() {
-        setUserid(penjualanpanel.getTxt_idStruk().getText().toString());
+        detail.setKodestruk(penjualanpanel.getTxt_idStruk().getText().toString());
         new DetailPenjualan().setVisible(true);
+        penjualanpanel.setVisible(false);
     }
 
-    public static String getUserid() {
-        return userid;
+    public void tombolhapus() {
+        String kodeStruk = penjualanpanel.getTxt_idStruk().getText().toString();
+        if(implementPenjualan.delete(kodeStruk)){
+            JOptionPane.showMessageDialog(null, "Data Berhasil di Hapus");
+        }else{
+            JOptionPane.showMessageDialog(null, "Data gagal di Hapus");
+        }
     }
-
-    public static void setUserid(String userid) {
-        penjualanController.userid = userid;
-    }
-    
-    
     
 }

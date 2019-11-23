@@ -13,10 +13,11 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author qoheng
  */
-public class TabelModelDetail extends AbstractTableModel{
+public class TabelModelDetail extends AbstractTableModel {
+
     private List<detail> list;
-    
-    public TabelModelDetail(List<detail> list){
+
+    public TabelModelDetail(List<detail> list) {
         this.list = list;
     }
 
@@ -40,6 +41,8 @@ public class TabelModelDetail extends AbstractTableModel{
             case 2:
                 return list.get(rowIndex).getHarga();
             case 3:
+                return list.get(rowIndex).getJumlah();
+            case 4:
                 return list.get(rowIndex).getTotalharga();
             default:
                 return null;

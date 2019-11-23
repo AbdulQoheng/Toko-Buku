@@ -9,6 +9,7 @@ import com.toko_buku.model.dao.DetailDAO;
 import com.toko_buku.model.detail;
 import com.toko_buku.model.implement.implementDetail;
 import com.toko_buku.model.tabel.TabelModelDetail;
+import com.toko_buku_view.admin.Penjualan;
 import com.toko_buku_view.admin.DetailPenjualan;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -24,11 +25,13 @@ public class DetailController {
     private static DetailPenjualan detailpanel;
     private static implementDetail implementdetail;
     
+    
     public DetailController(DetailPenjualan detailpanel) {
         this.detailpanel = detailpanel;    
         implementdetail = new DetailDAO();
         lokasiform();
-//        isitabel();
+        isitabel();
+        awal();
     
     }
     
@@ -38,10 +41,25 @@ public class DetailController {
         detailpanel.setLocation(x, y);
     }
     
+    public void awal(){
+        String kodestruk = detail.getKodestruk();
+        int jumlah = implementdetail.getjumlah(kodestruk);
+        detailpanel.getTxt_kodestruk().setText(kodestruk);
+        detailpanel.getTxt_jumlah_harga().setText(String.valueOf(jumlah));
+
+    }
+    
     public void isitabel(){
-        list = implementdetail.getAll();
+        
+        list = implementdetail.getAll(detail.getKodestruk());
         detailpanel.getTabelDetail().setModel(new TabelModelDetail(list));
         
+    }
+    
+    public void tombolkembali(){
+        new Penjualan().setVisible(true);
+        detailpanel.setVisible(false);
+        detail.setKodestruk(null);
     }
     
 }

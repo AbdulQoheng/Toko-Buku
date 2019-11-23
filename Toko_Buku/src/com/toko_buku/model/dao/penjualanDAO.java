@@ -8,6 +8,8 @@ package com.toko_buku.model.dao;
 import com.toko_buku.database.koneksi;
 import com.toko_buku.model.implement.implementPenjualan;
 import com.toko_buku.model.penjualan;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -72,6 +74,21 @@ public class penjualanDAO implements implementPenjualan{
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    @Override
+    public boolean delete(String kodeStruk) {
+        try {
+            String sql = "delete from struk where kodebuku ='" + kodeStruk + "'";
+
+            Connection conn = (Connection) koneksi.koneksiDB();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
     

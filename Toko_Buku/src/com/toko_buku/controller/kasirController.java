@@ -26,6 +26,7 @@ public class kasirController extends user {
 
     Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
     private List<user> list;
+    private user user;
     private static Kasir kasirpanel;
     private implementkasir implementkasir;
     private int daftar = 0;
@@ -33,6 +34,7 @@ public class kasirController extends user {
     public kasirController(Kasir kasirpanel) {
         this.kasirpanel = kasirpanel;
         implementkasir = new kasirDAO();
+        user = new user();
         lokasiform();
         IsiTabel();
         komponen("awal");
@@ -115,20 +117,20 @@ public class kasirController extends user {
             Date date = null;
             int row = kasirpanel.getTabelkasir().rowAtPoint(evt.getPoint());
 
-            String userid = kasirpanel.getTabelkasir().getValueAt(row, 0).toString();
-            String nama = kasirpanel.getTabelkasir().getValueAt(row, 1).toString();
-            String ttl = kasirpanel.getTabelkasir().getValueAt(row, 2).toString();
-            if (ttl.equals("null")) {
+            user.setUserid(kasirpanel.getTabelkasir().getValueAt(row, 0).toString());
+            user.setNama(kasirpanel.getTabelkasir().getValueAt(row, 1).toString());
+            user.setTtl(kasirpanel.getTabelkasir().getValueAt(row, 2).toString());
+            if (user.getTtl().equals("null")) {
                 date = null;
             } else {
-                date = new SimpleDateFormat("dd/MM/yy").parse(ttl);
+                date = new SimpleDateFormat("dd/MM/yy").parse(user.getTtl());
             }
-            String pass = kasirpanel.getTabelkasir().getValueAt(row, 3).toString();
+            user.setPassword(kasirpanel.getTabelkasir().getValueAt(row, 3).toString());
 
-            kasirpanel.getTxt_userid().setText(String.valueOf(userid));
-            kasirpanel.getTxt_nama().setText(String.valueOf(nama));
+            kasirpanel.getTxt_userid().setText(String.valueOf(user.getUserid()));
+            kasirpanel.getTxt_nama().setText(String.valueOf(user.getNama()));
             kasirpanel.getJtanggal().setDate(date);
-            kasirpanel.getTxt_pass().setText(String.valueOf(pass));
+            kasirpanel.getTxt_pass().setText(String.valueOf(user.getPassword()));
 
         } catch (Exception e) {
             e.printStackTrace();

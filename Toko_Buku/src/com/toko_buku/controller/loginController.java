@@ -39,11 +39,11 @@ public class loginController extends login{
     }
     
     public void masuk(){
-        if(implementLogin.masuk(loginPanel.getUserText().getText(), loginPanel.getPassText().getText()) == 1){
+        if(implementLogin.masukadmin(loginPanel.getUserText().getText(), loginPanel.getPassText().getText())){
             JOptionPane.showMessageDialog(null, "Login Sukses");
             new FormAdmin().setVisible(true);
             loginPanel.setVisible(false);
-        }else if(implementLogin.masuk(loginPanel.getUserText().getText(), loginPanel.getPassText().getText()) == 2){
+        }else if(implementLogin.masukkasir(loginPanel.getUserText().getText(), loginPanel.getPassText().getText())){
             JOptionPane.showMessageDialog(null, "Login Sukses");
             new FormKasir().setVisible(true);
             loginPanel.setVisible(false);
