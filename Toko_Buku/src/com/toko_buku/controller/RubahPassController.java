@@ -9,6 +9,7 @@ import com.toko_buku.model.dao.RubahPassDAO;
 import com.toko_buku.view.RubahPass;
 import com.toko_buku.model.implement.implementRubahPass;
 import com.toko_buku.model.login;
+import com.toko_buku.view.FormLogin;
 import com.toko_buku.view.kasir.FormKasir;
 import com.toko_buku_view.admin.FormAdmin;
 import java.awt.Dimension;
@@ -28,8 +29,15 @@ public class RubahPassController {
     public RubahPassController(RubahPass rubahpanel) {
         this.rubahpanel = rubahpanel;
         implementrubah = new RubahPassDAO();
-        lokasiform();
-        rubahpanel.getTxt_user().setText(login.userid);
+
+        if (login.ceklogin()) {
+            lokasiform();
+            this.rubahpanel.getTxt_user().setText(login.userid);
+        } else {
+            JOptionPane.showMessageDialog(null, "Anda belum login");
+            new FormLogin().setVisible(true);
+            this.rubahpanel.setVisible(false);
+        }
     }
 
     public void lokasiform() {

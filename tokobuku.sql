@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 14, 2019 at 02:58 PM
+-- Generation Time: Nov 25, 2019 at 06:49 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -62,9 +62,10 @@ CREATE TABLE `buku` (
 --
 
 INSERT INTO `buku` (`kodebuku`, `nama_buku`, `jenis_buku`, `harga`, `stok`, `bukuke`) VALUES
-('BKU1', 'naruto', 'komik', 6000, 50, 1),
+('BKU1', 'narutotuo', 'komik', 600005, 50, 1),
 ('BKU2', 'naruto', 'komik', 10000, 100, 2),
-('BKU3', 'one piece', 'cerita', 50000, 10000, 3);
+('BKU3', 'one piece', 'cerita', 50000, 10000, 3),
+('BKU4', 'sidu', 'buku tulis', 2000, 50, 4);
 
 -- --------------------------------------------------------
 
@@ -75,10 +76,17 @@ INSERT INTO `buku` (`kodebuku`, `nama_buku`, `jenis_buku`, `harga`, `stok`, `buk
 CREATE TABLE `detail_struck` (
   `iddetail` int(11) NOT NULL,
   `jumlah` int(11) NOT NULL,
-  `totalharga` int(11) NOT NULL,
+  `total_harga` int(11) NOT NULL,
   `kodebuku` varchar(10) NOT NULL,
   `kodestruck` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `detail_struck`
+--
+
+INSERT INTO `detail_struck` (`iddetail`, `jumlah`, `total_harga`, `kodebuku`, `kodestruck`) VALUES
+(1, 5, 25000, 'BKU3', 'STR1');
 
 -- --------------------------------------------------------
 
@@ -101,9 +109,11 @@ CREATE TABLE `kasir` (
 INSERT INTO `kasir` (`userkasir`, `nama`, `ttl`, `password`, `kasirke`) VALUES
 ('KSR2', 'Lingga Wahtu Rochim', '07/4/2000', 'jenengkudew1', 2),
 ('KSR3', 'ABD. Qohar Agus Maulana', '08/30/1997', 'jenengmu', 3),
-('KSR4', 'Andy', '05/11/2019', 'jancok', 4),
+('KSR4', 'Andy', '11/5/2019', 'owalah', 4),
 ('KSR5', 'Fara', '08/3/1945', 'farabaik', 5),
-('KSR6', 'berlian', '11/7/2019', 'oke', 6);
+('KSR6', 'berlian', '11/7/2019', 'oke', 6),
+('KSR7', 'berlian', '11/1/2019', 'heeh', 7),
+('KSR8', '234567', '11/7/2019', 'uuuu', 8);
 
 -- --------------------------------------------------------
 
@@ -162,6 +172,16 @@ ALTER TABLE `kasir`
 ALTER TABLE `struk`
   ADD PRIMARY KEY (`kodestruk`),
   ADD KEY `fk_userkasir` (`userkasir`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `detail_struck`
+--
+ALTER TABLE `detail_struck`
+  MODIFY `iddetail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables

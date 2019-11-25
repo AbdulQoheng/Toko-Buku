@@ -7,8 +7,10 @@ package com.toko_buku.controller;
 
 import com.toko_buku.model.implement.implementkasir;
 import com.toko_buku.model.dao.kasirDAO;
+import com.toko_buku.model.login;
 import com.toko_buku.model.tabel.TabelModelKasir;
 import com.toko_buku.model.user;
+import com.toko_buku.view.FormLogin;
 import com.toko_buku_view.admin.FormAdmin;
 import com.toko_buku_view.admin.Kasir;
 import java.awt.Dimension;
@@ -35,9 +37,16 @@ public class kasirController extends user {
         this.kasirpanel = kasirpanel;
         implementkasir = new kasirDAO();
         user = new user();
-        lokasiform();
-        IsiTabel();
-        komponen("awal");
+        if (login.ceklogin()) {
+            lokasiform();
+            IsiTabel();
+            komponen("awal");
+        } else {
+            JOptionPane.showMessageDialog(null, "Anda belum login");
+            new FormLogin().setVisible(true);
+            this.kasirpanel.setVisible(false);
+        }
+
     }
 
     public void lokasiform() {
@@ -91,7 +100,6 @@ public class kasirController extends user {
                 daftar = 0;
                 break;
 
-                
             case "daftar":
                 kasirpanel.getBtn_cari().setEnabled(false);
                 kasirpanel.getBtn_daftar().setEnabled(true);
@@ -139,34 +147,29 @@ public class kasirController extends user {
 
     public void tombolcari() {
 
-        String userid = null;
-        String nama = null;
-        String ttl = null;
-        String pass = null;
         if (kasirpanel.getTxt_userid().getText().toString().equals("")) {
-            userid = "null";
+            user.setUserid("null");
         } else {
-            userid = kasirpanel.getTxt_userid().getText().toString();
+            user.setUserid("%" + kasirpanel.getTxt_userid().getText().toString() + "%");
         }
         if (kasirpanel.getTxt_nama().getText().toString().equals("")) {
-            nama = "null";
+            user.setNama("null");
         } else {
-            nama = kasirpanel.getTxt_nama().getText().toString();
+            user.setNama("%" + kasirpanel.getTxt_nama().getText().toString() + "%");
         }
         if (kasirpanel.getJtanggal().getDate() == null) {
-            ttl = "null";
+            user.setTtl("null");
         } else {
             SimpleDateFormat format = new SimpleDateFormat("MM/d/yyyy");
-            ttl = (format.format(kasirpanel.getJtanggal().getDate()));
+            user.setTtl((format.format(kasirpanel.getJtanggal().getDate())));
         }
-
         if (kasirpanel.getTxt_pass().getText().toString().equals("")) {
-            pass = "null";
+            user.setPassword("null");
         } else {
-            pass = kasirpanel.getTxt_pass().getText().toString();
+            user.setPassword(kasirpanel.getTxt_pass().getText().toString());
         }
 
-        list = implementkasir.getcari(userid, nama, ttl, pass);
+        list = implementkasir.getcari(user.getUserid(), user.getNama(), user.getTtl(), user.getPassword());
 
         kasirpanel.getTabelkasir().setModel(new TabelModelKasir(list));
         JOptionPane.showMessageDialog(null, "Data yang di Temukan");
@@ -175,73 +178,74 @@ public class kasirController extends user {
 
     public void tomboldaftar() {
 
-        String userkasir = "KSR" + String.valueOf(implementkasir.jumlahdata() + 1);
+        user.setUserid("KSR" + String.valueOf(implementkasir.jumlahdata() + 1));
 
         if (daftar == 0) {
             komponen("daftar");
             JOptionPane.showMessageDialog(null, "Masukkan Data");
             daftar = 1;
-            kasirpanel.getTxt_userid().setText(userkasir);
+            kasirpanel.getTxt_userid().setText(user.getUserid());
 
         } else {
-            String nama = null;
-            String ttl = null;
-            String pass = null;
+            SimpleDateFormat format = new SimpleDateFormat("MM/d/yyyy");
+            user.setNama(kasirpanel.getTxt_nama().getText());
+            user.setTtl((format.format(kasirpanel.getJtanggal().getDate())));
+            user.setPassword(kasirpanel.getTxt_pass().getText());
 
-            if (kasirpanel.getTxt_nama().getText().toString().equals("")) {
-                nama = "null";
+            if (user.getNama().equals("")) {
+                JOptionPane.showMessageDialog(null, "Maaf, Nama Buku belum diisi !");
+                kasirpanel.getTxt_nama().requestFocus();
+            } else if (user.getTtl().equals("")) {
+                JOptionPane.showMessageDialog(null, "Maaf, Jenis Buku belum diisi !");
+                kasirpanel.getJtanggal().requestFocus();
+            } else if (user.getPassword().equals("")) {
+                JOptionPane.showMessageDialog(null, "Maaf, Harga Buku belum diisi !");
+                kasirpanel.getTxt_pass().requestFocus();
             } else {
-                nama = kasirpanel.getTxt_nama().getText().toString();
-            }
-            if (kasirpanel.getJtanggal().getDate() == null) {
-                ttl = "null";
-            } else {
-                SimpleDateFormat format = new SimpleDateFormat("MM/d/yyyy");
-                ttl = (format.format(kasirpanel.getJtanggal().getDate()));
+                if (implementkasir.insert(user.getUserid(), user.getNama(), user.getTtl(), user.getPassword())) {
+                    JOptionPane.showMessageDialog(null, "Data Telah di Tambahkan");
+                    daftar = 0;
+                    komponen("segarkan");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Data Gagal di Tambahkan");
+                }
             }
 
-            if (kasirpanel.getTxt_pass().getText().toString().equals("")) {
-                pass = "null";
-            } else {
-                pass = kasirpanel.getTxt_pass().getText().toString();
-            }
-
-            if(implementkasir.insert(userkasir, nama, ttl, pass)){
-                JOptionPane.showMessageDialog(null, "Data Telah di Tambahkan");
-                daftar = 0;
-                komponen("segarkan");
-            }else{
-                JOptionPane.showMessageDialog(null, "Data Gagal di Tambahkan");
-            }
-            
         }
 
     }
 
     public void tombolhapus() {
-        if(implementkasir.delete(kasirpanel.getTxt_userid().getText().toString())){
-            JOptionPane.showMessageDialog(null, "Data Telah di Hapus");
-            komponen("segarkan");
-        }else{
-            JOptionPane.showMessageDialog(null, "Data Gagal di Hapus");
+        user.setUserid(kasirpanel.getTxt_userid().getText());
+
+        if (JOptionPane.showConfirmDialog(null, "Apakah Anda yakin akan menghapus dataini ?", "Warning", 2) == JOptionPane.YES_OPTION) {
+            if (implementkasir.delete(user.getUserid())) {
+                JOptionPane.showMessageDialog(null, "Data Telah Di Hapus");
+                komponen("segarkan");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data Gagal Di Hapus");
+            }
+
         }
+
     }
 
     public void tombolrubah() {
-        String userid = kasirpanel.getTxt_userid().getText().toString();
-        String nama = kasirpanel.getTxt_nama().getText().toString();
         SimpleDateFormat format = new SimpleDateFormat("MM/d/yyyy");
-        String ttl = (format.format(kasirpanel.getJtanggal().getDate()));
-        String pass = kasirpanel.getTxt_pass().getText().toString();
+        user.setUserid(kasirpanel.getTxt_userid().getText().toString());
+        user.setNama(kasirpanel.getTxt_nama().getText().toString());
+        user.setTtl((format.format(kasirpanel.getJtanggal().getDate())));
+        user.setPassword(kasirpanel.getTxt_pass().getText().toString());
 
-        if(implementkasir.update(userid, nama, ttl, pass)){
-            JOptionPane.showMessageDialog(null, "Data Telah di Uubah");
-            komponen("segarkan");
-        }else{
-            JOptionPane.showMessageDialog(null, "Data Gagal di Ubah");
+        if (JOptionPane.showConfirmDialog(null, "Apakah Anda yakin akan merubah data ini ?", "Warning", 2) == JOptionPane.YES_OPTION) {
+            if (implementkasir.update(user.getUserid(), user.getNama(), user.getTtl(), user.getPassword())) {
+                JOptionPane.showMessageDialog(null, "Data Telah di Ubah");
+                komponen("segarkan");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data Gagal di Ubah");
+            }
         }
-        
-        
+
     }
 
     public void tombolKembali() {

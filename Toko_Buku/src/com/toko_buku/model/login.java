@@ -15,30 +15,37 @@ public class login {
     public static String bagian;
     
 
-    protected static String getUserid() {
+    public static String getUserid() {
         return userid;
     }
 
-    protected static void setUserid(String userid) {
+    public static void setUserid(String userid) {
         login.userid = userid;
     }
 
-    protected static String getPass() {
+    public static String getPass() {
         return pass;
     }
 
-    protected static void setPass(String pass) {
+    public static void setPass(String pass) {
         login.pass = pass;
     }    
 
-    protected static String getBagian() {
+    public static String getBagian() {
         return bagian;
     }
 
-    protected static void setBagian(String bagian) {
+    public static void setBagian(String bagian) {
         login.bagian = bagian;
     }
     
-    
+    public static boolean ceklogin(){
+        if (getUserid() != null){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
     
 }

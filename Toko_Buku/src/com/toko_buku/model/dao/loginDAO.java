@@ -17,7 +17,7 @@ import java.sql.Statement;
  *
  * @author qoheng
  */
-public class loginDAO extends login implements implementLogin {
+public class loginDAO implements implementLogin {
 
     @Override
     public boolean masukadmin(String userid, String pass) {
@@ -31,7 +31,9 @@ public class loginDAO extends login implements implementLogin {
             ResultSet result = statement.executeQuery();
             
             if (result.next()){
+                
                 login.setUserid(userid);
+                System.out.println(login.getUserid());
                 return true;      
             
             }

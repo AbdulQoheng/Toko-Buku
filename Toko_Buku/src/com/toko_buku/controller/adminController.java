@@ -33,9 +33,16 @@ public class adminController{
     
     public adminController(FormAdmin adminpanel){
         this.adminpanel = adminpanel;
-        implementuser = new userDAO(); 
-        lokasiform();
-        tampilanawal();
+        implementuser = new userDAO();
+        if (login.ceklogin()) {
+            lokasiform();
+            tampilanawal();
+        } else {
+            JOptionPane.showMessageDialog(null, "Anda belum login");
+            new FormLogin().setVisible(true);
+            this.adminpanel.setVisible(false);
+        }
+        
         
     }
     
@@ -70,6 +77,7 @@ public class adminController{
         new FormLogin().setVisible(true);
         adminpanel.setVisible(false);
         login.userid = null;
+        login.bagian = null;
         login.pass = null;
     }
     

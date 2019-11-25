@@ -16,9 +16,9 @@ import javax.swing.JOptionPane;
  */
 public class koneksi {
     private static Connection mysqlkonek;
-    public static void main(String[] args) throws SQLException{
-        koneksiDB();
-    }
+//    public static void main(String[] args) throws SQLException{
+//        koneksiDB();
+//    }
     
     public static Connection koneksiDB() throws SQLException {
         if(mysqlkonek==null){
