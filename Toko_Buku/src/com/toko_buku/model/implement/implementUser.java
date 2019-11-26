@@ -16,4 +16,6 @@ public interface implementUser {
     
     public List<user> datauser(String userid);
     
+    public boolean rubahprof(String userid, String nama, String ttl);
+    
 }

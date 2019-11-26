@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
  *
  * @author qoheng
  */
-public class kasirController extends user {
+public class kasirController {
 
     Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
     private List<user> list;
@@ -147,15 +147,15 @@ public class kasirController extends user {
 
     public void tombolcari() {
 
-        if (kasirpanel.getTxt_userid().getText().toString().equals("")) {
+        if (kasirpanel.getTxt_userid().getText().equals("")) {
             user.setUserid("null");
         } else {
-            user.setUserid("%" + kasirpanel.getTxt_userid().getText().toString() + "%");
+            user.setUserid("%" + kasirpanel.getTxt_userid().getText() + "%");
         }
-        if (kasirpanel.getTxt_nama().getText().toString().equals("")) {
+        if (kasirpanel.getTxt_nama().getText().equals("")) {
             user.setNama("null");
         } else {
-            user.setNama("%" + kasirpanel.getTxt_nama().getText().toString() + "%");
+            user.setNama("%" + kasirpanel.getTxt_nama().getText() + "%");
         }
         if (kasirpanel.getJtanggal().getDate() == null) {
             user.setTtl("null");
@@ -163,10 +163,10 @@ public class kasirController extends user {
             SimpleDateFormat format = new SimpleDateFormat("MM/d/yyyy");
             user.setTtl((format.format(kasirpanel.getJtanggal().getDate())));
         }
-        if (kasirpanel.getTxt_pass().getText().toString().equals("")) {
+        if (kasirpanel.getTxt_pass().getText().equals("")) {
             user.setPassword("null");
         } else {
-            user.setPassword(kasirpanel.getTxt_pass().getText().toString());
+            user.setPassword(kasirpanel.getTxt_pass().getText());
         }
 
         list = implementkasir.getcari(user.getUserid(), user.getNama(), user.getTtl(), user.getPassword());

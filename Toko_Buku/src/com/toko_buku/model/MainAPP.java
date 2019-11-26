@@ -13,7 +13,8 @@ import com.toko_buku.view.FormLogin;
  */
 public class MainAPP {
     public static void main(String[] args) {
-        new FormLogin().setVisible(true);
+        FormLogin ob = new FormLogin();
+        ob.setVisible(true);
     }
     
 }

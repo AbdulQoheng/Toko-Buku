@@ -8,6 +8,7 @@ package com.toko_buku.model.dao;
 import com.toko_buku.model.implement.implementUser;
 import com.toko_buku.database.koneksi;
 import com.toko_buku.model.user;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -55,5 +56,26 @@ public class userDAO implements implementUser{
         }
         return null;
     }
+
+    @Override
+    public boolean rubahprof(String userid, String nama, String ttl) {
+        try {
+            PreparedStatement statement = koneksi.koneksiDB().prepareStatement(
+            "update admin set nama = ? ,ttl  = ? where useradmin = ?");
+            
+            statement.setString(1, nama);
+            statement.setString(2, ttl);
+            statement.setString(3, userid);
+            statement.executeUpdate();
+       
+            return true;
+        
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    
     
 }

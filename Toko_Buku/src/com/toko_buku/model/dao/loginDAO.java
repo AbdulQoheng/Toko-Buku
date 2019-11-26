@@ -33,7 +33,8 @@ public class loginDAO implements implementLogin {
             if (result.next()){
                 
                 login.setUserid(userid);
-                System.out.println(login.getUserid());
+                login.setPass(pass);
+                login.setBagian("admin");
                 return true;      
             
             }
@@ -55,6 +56,7 @@ public class loginDAO implements implementLogin {
             ResultSet result = statement.executeQuery();
             
             if (result.next()){
+                login.setBagian("kasir");
                 return true;      
             
             }

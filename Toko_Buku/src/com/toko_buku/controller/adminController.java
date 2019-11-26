@@ -29,11 +29,13 @@ public class adminController{
     Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
     private static FormAdmin adminpanel;
     private static implementUser implementuser;
+    private user user;
     private List<user> list;
     
     public adminController(FormAdmin adminpanel){
         this.adminpanel = adminpanel;
         implementuser = new userDAO();
+        user = new user();
         if (login.ceklogin()) {
             lokasiform();
             tampilanawal();
@@ -78,11 +80,11 @@ public class adminController{
         adminpanel.setVisible(false);
         login.userid = null;
         login.bagian = null;
-        login.pass = null;
     }
     
     public void lihatpass(){
-        JOptionPane.showMessageDialog(null, "Password anda : "+adminpanel.getTxt_pass().getText());
+        user.setPassword(adminpanel.getTxt_pass().toString());
+        JOptionPane.showMessageDialog(null, "Password anda : "+user.getPassword());
     }
     
     public void rubahpass(){
@@ -97,5 +99,17 @@ public class adminController{
     public void tombollihatpenjualan() {
         new Penjualan().setVisible(true);
         adminpanel.setVisible(false);
+    }
+
+    public void tombolrubahprofile() {
+        user.setUserid(adminpanel.getTxt_userid().getText());
+        user.setNama(adminpanel.getTxt_nama().getText());
+        user.setTtl(adminpanel.getTxt_tanggallahir().getText());
+        
+        if(implementuser.rubahprof(user.getUserid(), user.getNama(), user.getTtl())){
+            JOptionPane.showMessageDialog(null, "Profile telah di Ubah");
+        }else{
+            JOptionPane.showMessageDialog(null, "Gagal Ubah Profile");
+        }
     }
 }

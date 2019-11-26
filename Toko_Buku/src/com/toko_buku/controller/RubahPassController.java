@@ -48,8 +48,8 @@ public class RubahPassController {
 
     public void rubah() {
         if (rubahpanel.getPassBaru().getText().equals(rubahpanel.getPassKon().getText())) {
-            if (implementrubah.rubahpass(rubahpanel.getTxt_user().getText(), rubahpanel.getPassBaru().getText())) {
-                if (JOptionPane.showConfirmDialog(null, "Apakah Anda yakin akan menghapus dataini ?", "Warning", 2) == JOptionPane.YES_OPTION) {
+            if (JOptionPane.showConfirmDialog(null, "Apakah Anda yakin akan menghapus dataini ?", "Warning", 2) == JOptionPane.YES_OPTION) {
+                if (implementrubah.rubahpass(rubahpanel.getTxt_user().getText(), rubahpanel.getPassBaru().getText())) {
                     if (login.bagian.equals("admin")) {
                         new FormAdmin().setVisible(true);
                         rubahpanel.setVisible(false);

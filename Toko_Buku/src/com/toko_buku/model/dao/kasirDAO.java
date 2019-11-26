@@ -59,10 +59,15 @@ public class kasirDAO implements implementkasir {
             
             PreparedStatement statement = koneksi.koneksiDB().prepareStatement(
             "select* from kasir "
-                    + "where userkasir like '%?%' "
-                    + "or nama like '%?%' "
-                    + "or ttl like '%?%' "
-                    + "or password like '%?%'");
+                    + "where userkasir like ? "
+                    + "or nama like ? "
+                    + "or ttl like ? "
+                    + "or password like ?");
+            
+            statement.setString(1, userkasir);
+            statement.setString(2, nama);
+            statement.setString(3, ttl);
+            statement.setString(4, pass);
             
             ResultSet result = statement.executeQuery();
 

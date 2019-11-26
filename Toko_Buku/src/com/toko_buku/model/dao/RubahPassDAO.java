@@ -21,22 +21,20 @@ public class RubahPassDAO implements implementRubahPass{
     @Override
     public boolean rubahpass(String userid, String passbaru) {
        
-        try{
-            String sql = "update admin set "
-                    +"password ='"+passbaru
-                    +"' where useradmin = '"+userid+"'";
+        try {
             
-//            String sql1 = "update kasir set "
-//                    +",password ='"+passbaru
-//                    +"'where userkasir= '"+userid+"'";
-            Connection conn = (Connection)koneksi.koneksiDB();
-            PreparedStatement stmt = conn.prepareStatement(sql);
-//            PreparedStatement stmt1 = conn.prepareStatement(sql1);
-            stmt.execute();
-//            stmt1.execute();
-            return  true;
-        }catch (SQLException | HeadlessException e){
+            PreparedStatement statement = koneksi.koneksiDB().prepareStatement(
+            "update admin set password = ? where useradmin = ?");
+            
+            statement.setString(1, passbaru);
+            statement.setString(2, userid);
+            statement.executeUpdate();
+            
+            return true;
+            
+        } catch (Exception e) {
             e.printStackTrace();
+            
         }
         return false;
     }
