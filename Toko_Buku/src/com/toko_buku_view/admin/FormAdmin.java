@@ -25,10 +25,6 @@ public class FormAdmin extends javax.swing.JFrame {
         admincontroller = new adminController(this);
     }
 
-    public adminController getAdmincontroller() {
-        return admincontroller;
-    }
-
     public JTextField getTxt_nama() {
         return txt_nama;
     }

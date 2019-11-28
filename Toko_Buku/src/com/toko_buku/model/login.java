@@ -13,6 +13,7 @@ public class login {
     public static String userid;
     public static String pass;
     public static String bagian;
+    public static String status;
     
 
     public static String getUserid() {
@@ -38,14 +39,22 @@ public class login {
     public static void setBagian(String bagian) {
         login.bagian = bagian;
     }
-    
-    public static boolean ceklogin(){
-        if (getUserid() != null){
-            return true;
-        }else{
-            return false;
-        }
-        
+
+    public static String getStatus() {
+        return status;
     }
+
+    public static void setStatus(String status) {
+        login.status = status;
+    }
+    
+    public static void logout(){
+        login.setStatus(null);
+        login.setBagian(null);
+        login.setUserid(null);
+        login.setPass(null);
+    }
+    
+    
     
 }

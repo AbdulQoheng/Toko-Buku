@@ -36,7 +36,7 @@ public class adminController{
         this.adminpanel = adminpanel;
         implementuser = new userDAO();
         user = new user();
-        if (login.ceklogin()) {
+        if (login.getStatus().equals("aktif")) {
             lokasiform();
             tampilanawal();
         } else {
@@ -76,14 +76,14 @@ public class adminController{
     }
     
     public void logout(){
+        login.logout();
         new FormLogin().setVisible(true);
         adminpanel.setVisible(false);
-        login.userid = null;
-        login.bagian = null;
+        
     }
     
     public void lihatpass(){
-        user.setPassword(adminpanel.getTxt_pass().toString());
+        user.setPassword(adminpanel.getTxt_pass().getText());
         JOptionPane.showMessageDialog(null, "Password anda : "+user.getPassword());
     }
     

@@ -43,7 +43,7 @@ public class userDAO implements implementUser{
                 return list;
                 
             } else if (result1.next()) {
-                user.setUserid(result1.getString("useradmin"));
+                user.setUserid(result1.getString("userkasir"));
                 user.setNama(result1.getString("nama"));
                 user.setTtl(result1.getString("ttl"));
                 user.setPassword(result1.getString("password"));

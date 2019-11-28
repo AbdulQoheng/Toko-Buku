@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  *
  * @author qoheng
  */
-public class loginController extends login{
+public class loginController{
     Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
     private static FormLogin loginPanel;
     private static implementLogin implementLogin;
@@ -39,16 +39,21 @@ public class loginController extends login{
     }
     
     public void masuk(){
-        if(implementLogin.masukadmin(loginPanel.getUserText().getText(), loginPanel.getPassText().getText())){
-            JOptionPane.showMessageDialog(null, "Login Sukses");
+        login.setUserid(loginPanel.getUserText().getText());
+        login.setPass(loginPanel.getPassText().getText());
+        
+        if(implementLogin.masukadmin(login.getUserid(), login.getPass())){
+            JOptionPane.showMessageDialog(null, "Anda Login sebagai Admin");
             new FormAdmin().setVisible(true);
             loginPanel.setVisible(false);
-        }else if(implementLogin.masukkasir(loginPanel.getUserText().getText(), loginPanel.getPassText().getText())){
-            JOptionPane.showMessageDialog(null, "Login Sukses");
+        }else if(implementLogin.masukkasir(login.getUserid(), login.getPass())){
+            JOptionPane.showMessageDialog(null, "Anda Login sebagai kasir");
             new FormKasir().setVisible(true);
             loginPanel.setVisible(false);
         }else{
             JOptionPane.showMessageDialog(null, "Periksa Kembali User dan Password");
+            login.setUserid(null);
+            login.setPass(null);
         }
     
     }

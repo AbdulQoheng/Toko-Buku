@@ -30,7 +30,7 @@ public class RubahPassController {
         this.rubahpanel = rubahpanel;
         implementrubah = new RubahPassDAO();
 
-        if (login.ceklogin()) {
+        if (login.getStatus().equals("aktif")) {
             lokasiform();
             this.rubahpanel.getTxt_user().setText(login.userid);
         } else {

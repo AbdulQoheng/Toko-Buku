@@ -8,11 +8,9 @@ package com.toko_buku.model.dao;
 import com.toko_buku.database.koneksi;
 import com.toko_buku.model.buku;
 import com.toko_buku.model.implement.implementBuku;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 

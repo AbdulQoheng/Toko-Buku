@@ -37,7 +37,7 @@ public class kasirController {
         this.kasirpanel = kasirpanel;
         implementkasir = new kasirDAO();
         user = new user();
-        if (login.ceklogin()) {
+        if (login.getStatus().equals("aktif")) {
             lokasiform();
             IsiTabel();
             komponen("awal");

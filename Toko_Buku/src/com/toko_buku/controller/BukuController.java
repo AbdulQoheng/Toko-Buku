@@ -35,7 +35,7 @@ public class BukuController {
         this.bukupanel = bukupanel;
         implementbuku = new bukuDAO();
         buku = new buku();
-        if (login.ceklogin()) {
+        if (login.getStatus().equals("aktif")) {
             lokasiform();
             isitabel();
             komponen("awal");

@@ -35,7 +35,7 @@ public class penjualanController {
     public penjualanController(Penjualan penjualanpanel) {
         this.penjualanpanel = penjualanpanel;
         implementPenjualan = new penjualanDAO();
-        if (login.ceklogin()) {
+        if (login.getStatus().equals("aktif")) {
             lokasiform();
             IsiTabel();
             komponen("awal");

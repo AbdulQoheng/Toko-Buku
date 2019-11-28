@@ -31,10 +31,10 @@ public class loginDAO implements implementLogin {
             ResultSet result = statement.executeQuery();
             
             if (result.next()){
-                
                 login.setUserid(userid);
                 login.setPass(pass);
                 login.setBagian("admin");
+                login.setStatus("aktif");
                 return true;      
             
             }

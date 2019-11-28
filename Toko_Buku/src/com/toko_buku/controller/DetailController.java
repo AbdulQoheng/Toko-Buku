@@ -32,7 +32,7 @@ public class DetailController {
     public DetailController(DetailPenjualan detailpanel) {
         this.detailpanel = detailpanel;
         implementdetail = new DetailDAO();
-        if (login.ceklogin()) {
+        if (login.getStatus().equals("aktif")) {
             lokasiform();
             isitabel();
             awal();
