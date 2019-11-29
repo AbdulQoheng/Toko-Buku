@@ -5,7 +5,7 @@
  */
 package com.toko_buku.controller;
 
-
+import com.toko_buku.model.cetak;
 import com.toko_buku.model.implement.implementLogin;
 import com.toko_buku.model.dao.loginDAO;
 import com.toko_buku.model.login;
@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  *
  * @author qoheng
  */
-public class loginController{
+public class loginController extends cetak{
     Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
     private static FormLogin loginPanel;
     private static implementLogin implementLogin;
@@ -30,6 +30,7 @@ public class loginController{
         this.loginPanel = loginPanel;
         implementLogin = new loginDAO();
         lokasiform();
+        loginPanel.getTxt_titel().setText(login.getNamatoko());
     }
     
     public void lokasiform(){
@@ -59,7 +60,10 @@ public class loginController{
     }
     
     public void keluar() {
-        System.exit(0);
+        if (konfirmasi("Apakah Anda Yakin Keluar ?")) {
+            System.exit(0);
+        }
+        
     }
 
 }

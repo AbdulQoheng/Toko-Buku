@@ -14,6 +14,7 @@ public class login {
     public static String pass;
     public static String bagian;
     public static String status;
+    public static String namatoko = "JAYA ABADI";
     
 
     public static String getUserid() {
@@ -47,6 +48,12 @@ public class login {
     public static void setStatus(String status) {
         login.status = status;
     }
+
+    public static String getNamatoko() {
+        return namatoko;
+    }
+    
+    
     
     public static void logout(){
         login.setStatus(null);

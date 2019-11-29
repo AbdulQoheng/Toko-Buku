@@ -5,7 +5,6 @@
  */
 package com.toko_buku_view.admin;
 
-import com.toedter.calendar.JDateChooser;
 import com.toko_buku.controller.penjualanController;
 import javax.swing.JButton;
 import javax.swing.JLabel;

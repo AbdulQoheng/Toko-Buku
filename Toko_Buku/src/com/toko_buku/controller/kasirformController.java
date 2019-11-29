@@ -5,6 +5,7 @@
  */
 package com.toko_buku.controller;
 
+import com.toko_buku.model.cetak;
 import com.toko_buku.model.dao.userDAO;
 import com.toko_buku.model.implement.implementUser;
 import com.toko_buku.model.login;
@@ -16,13 +17,12 @@ import com.toko_buku.view.kasir.FormTabelKasir;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author qoheng
  */
-public class kasirformController {
+public class kasirformController extends cetak{
   
     Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
     private static FormKasir kasirpanel;
@@ -65,7 +65,7 @@ public class kasirformController {
     
     public void lihatpass(){
         user.setPassword(kasirpanel.getTxt_pass().getText());
-        JOptionPane.showMessageDialog(null, "Password anda : "+user.getPassword());
+        informasi("Password anda : "+user.getPassword());
     }
     
     public void rubahpass(){

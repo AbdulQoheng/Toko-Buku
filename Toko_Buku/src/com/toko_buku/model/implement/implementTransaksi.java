@@ -19,4 +19,10 @@ public interface implementTransaksi {
     
     public List<transaksi> getAll(String kodebu, String jumlah);
     
+    public int jumlahdata();
+    
+    public void insertstruk(String kodestruk, String tanggal, String waktu, String userkasir, String totalbayar, String uangbayar, String uangkembali);
+    
+    public void insertdetail(String jumlah, String totalharga, String kodebuku, String kodestruk);
+    
 }

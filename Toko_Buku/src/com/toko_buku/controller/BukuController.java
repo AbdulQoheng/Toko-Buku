@@ -6,6 +6,7 @@
 package com.toko_buku.controller;
 
 import com.toko_buku.model.buku;
+import com.toko_buku.model.cetak;
 import com.toko_buku.model.dao.bukuDAO;
 import com.toko_buku.model.implement.implementBuku;
 import com.toko_buku.model.tabel.TabelModelBuku;
@@ -22,7 +23,7 @@ import javax.swing.JOptionPane;
  *
  * @author qoheng
  */
-public class BukuController {
+public class BukuController extends cetak {
 
     Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
     private List<buku> list;
@@ -43,7 +44,7 @@ public class BukuController {
             JOptionPane.showMessageDialog(null, "Anda belum login");
             new FormLogin().setVisible(true);
             this.bukupanel.setVisible(false);
-            
+
         }
 
     }
@@ -163,25 +164,25 @@ public class BukuController {
             buku.setStok(bukupanel.getTxt_stok().getText());
 
             if (buku.getNama().equals("")) {
-                JOptionPane.showMessageDialog(null, "Maaf, Nama Buku belum diisi !");
+                warning("Maaf, Nama Buku belum diisi !");
                 bukupanel.getTxt_nama().requestFocus();
             } else if (buku.getJenis().equals("")) {
-                JOptionPane.showMessageDialog(null, "Maaf, Jenis Buku belum diisi !");
+                warning("Maaf, Jenis Buku belum diisi !");
                 bukupanel.getTxt_jenis().requestFocus();
             } else if (buku.getHarga().equals("")) {
-                JOptionPane.showMessageDialog(null, "Maaf, Harga Buku belum diisi !");
+                warning("Maaf, Harga Buku belum diisi !");
                 bukupanel.getTxt_harga().requestFocus();
             } else if (buku.getStok().equals("")) {
-                JOptionPane.showMessageDialog(null, "Maaf, Stok Buku belum diisi !");
+                warning("Maaf, Stok Buku belum diisi !");
                 bukupanel.getTxt_stok().requestFocus();
             } else {
                 if (implementbuku.insert(buku.getKodebuku(), buku.getNama(), buku.getJenis(), buku.getHarga(), buku.getStok())) {
-                    JOptionPane.showMessageDialog(null, "Data Berhasil di tambahkan ", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    informasi("Data Berhasil di tambahkan ");
 
                     databaru = 0;
                     komponen("segarkan");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Data Gagal di tambahkan ", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    informasi("Data Gagal di tambahkan ");
                 }
 
             }
@@ -191,15 +192,13 @@ public class BukuController {
 
     public void tombolhapus() {
         buku.setKodebuku(bukupanel.getTxt_kodebuku().getText());
-
-        if (JOptionPane.showConfirmDialog(null, "Apakah Anda yakin akan menghapus dataini ?", "Warning", 2) == JOptionPane.YES_OPTION) {
+        if (konfirmasi("Apakah Anda yakin akan menghapus dataini ?")) {
             if (implementbuku.delete(buku.getKodebuku())) {
-                JOptionPane.showMessageDialog(null, "Data Telah Di Hapus");
+                informasi("Data Telah Di Hapus");
                 komponen("segarkan");
             } else {
-                JOptionPane.showMessageDialog(null, "Data Gagal Di Hapus");
+                informasi("Data Gagal Di Hapus");
             }
-
         }
 
     }
@@ -218,24 +217,24 @@ public class BukuController {
         buku.setStok(bukupanel.getTxt_stok().getText());
 
         if (buku.getNama().equals("")) {
-            JOptionPane.showMessageDialog(null, "Maaf, Nama Buku belum diisi !");
+            warning("Maaf, Nama Buku belum diisi !");
             bukupanel.getTxt_nama().requestFocus();
         } else if (buku.getJenis().equals("")) {
-            JOptionPane.showMessageDialog(null, "Maaf, Jenis Buku belum diisi !");
+            warning("Maaf, Jenis Buku belum diisi !");
             bukupanel.getTxt_jenis().requestFocus();
         } else if (buku.getHarga().equals("")) {
-            JOptionPane.showMessageDialog(null, "Maaf, Harga Buku belum diisi !");
+            warning("Maaf, Harga Buku belum diisi !");
             bukupanel.getTxt_harga().requestFocus();
         } else if (buku.getStok().equals("")) {
-            JOptionPane.showMessageDialog(null, "Maaf, Stok Buku belum diisi !");
+            warning("Maaf, Stok Buku belum diisi !");
             bukupanel.getTxt_stok().requestFocus();
         } else {
-            if (JOptionPane.showConfirmDialog(null, "Apakah Anda yakin akan merubah data ini ?", "Warning", 2) == JOptionPane.YES_OPTION) {
+            if (konfirmasi("Apakah Anda yakin akan merubah data ini ?")) {
                 if (implementbuku.update(buku.getKodebuku(), buku.getNama(), buku.getJenis(), buku.getHarga(), buku.getStok())) {
-                    JOptionPane.showMessageDialog(null, "Data berhasil diubah", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    informasi("Data berhasil diubah");
                     komponen("segarkan");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Data gagal diubah", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    informasi("Data gagal diubah");
                 }
             }
 
@@ -273,7 +272,7 @@ public class BukuController {
 
         list = implementbuku.getcari(buku.getKodebuku(), buku.getNama(), buku.getJenis(), buku.getHarga(), buku.getStok());
         bukupanel.getTabelbuku().setModel(new TabelModelBuku(list));
-        JOptionPane.showMessageDialog(null, "Data yang di Temukan " + list.size());
+        informasi("Data yang di Temukan " + list.size());
 
         komponen("cari");
 

@@ -5,6 +5,7 @@
  */
 package com.toko_buku.controller;
 
+import com.toko_buku.model.cetak;
 import com.toko_buku.model.dao.DetailDAO;
 import com.toko_buku.model.detail;
 import com.toko_buku.model.implement.implementDetail;
@@ -16,13 +17,12 @@ import com.toko_buku_view.admin.DetailPenjualan;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author qoheng
  */
-public class DetailController {
+public class DetailController extends cetak {
 
     Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
     private List<detail> list;
@@ -37,7 +37,7 @@ public class DetailController {
             isitabel();
             awal();
         } else {
-            JOptionPane.showMessageDialog(null, "Anda belum login");
+            warning("Anda belum login");
             new FormLogin().setVisible(true);
             this.detailpanel.setVisible(false);
         }

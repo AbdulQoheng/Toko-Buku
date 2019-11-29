@@ -14,6 +14,9 @@ public class penjualan {
     private String Tanggal;
     private String waktu;
     private String userKasir;
+    private String uangbayar;
+    private String uangkembali;
+    private String totalbayar;
 
     public String getKodeStruk() {
         return kodeStruk;
@@ -46,7 +49,29 @@ public class penjualan {
     public void setUserKasir(String userKasir) {
         this.userKasir = userKasir;
     }
-    
-    
+
+    public String getUangbayar() {
+        return uangbayar;
+    }
+
+    public void setUangbayar(String uangbayar) {
+        this.uangbayar = uangbayar;
+    }
+
+    public String getUangkembali() {
+        return uangkembali;
+    }
+
+    public void setUangkembali(String uangkembali) {
+        this.uangkembali = uangkembali;
+    }
+
+    public String getTotalbayar() {
+        return totalbayar;
+    }
+
+    public void setTotalbayar(String totalbayar) {
+        this.totalbayar = totalbayar;
+    }
     
 }

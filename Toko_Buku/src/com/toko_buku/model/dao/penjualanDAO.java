@@ -38,6 +38,9 @@ public class penjualanDAO implements implementPenjualan{
                 penjualan.setKodeStruk(result.getString("kodestruk"));
                 penjualan.setTanggal(result.getString("tanggal"));
                 penjualan.setWaktu(result.getString("waktu"));
+                penjualan.setTotalbayar(result.getString("total_bayar"));
+                penjualan.setUangbayar(result.getString("uangbayar"));
+                penjualan.setUangkembali(result.getString("uangkembali"));
                 penjualan.setUserKasir(result.getString("userkasir"));
                 list.add(penjualan);
             }
@@ -80,7 +83,7 @@ public class penjualanDAO implements implementPenjualan{
     @Override
     public boolean delete(String kodeStruk) {
         try {
-            String sql = "delete from struk where kodebuku ='" + kodeStruk + "'";
+            String sql = "delete from struk where kodestruk ='" + kodeStruk + "'";
 
             Connection conn = (Connection) koneksi.koneksiDB();
             PreparedStatement stmt = conn.prepareStatement(sql);

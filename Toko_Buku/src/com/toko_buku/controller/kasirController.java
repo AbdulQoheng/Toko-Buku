@@ -5,6 +5,7 @@
  */
 package com.toko_buku.controller;
 
+import com.toko_buku.model.cetak;
 import com.toko_buku.model.implement.implementkasir;
 import com.toko_buku.model.dao.kasirDAO;
 import com.toko_buku.model.login;
@@ -24,7 +25,7 @@ import javax.swing.JOptionPane;
  *
  * @author qoheng
  */
-public class kasirController {
+public class kasirController extends cetak{
 
     Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
     private List<user> list;
@@ -42,7 +43,7 @@ public class kasirController {
             IsiTabel();
             komponen("awal");
         } else {
-            JOptionPane.showMessageDialog(null, "Anda belum login");
+            warning("Anda belum login");
             new FormLogin().setVisible(true);
             this.kasirpanel.setVisible(false);
         }
@@ -172,7 +173,7 @@ public class kasirController {
         list = implementkasir.getcari(user.getUserid(), user.getNama(), user.getTtl(), user.getPassword());
 
         kasirpanel.getTabelkasir().setModel(new TabelModelKasir(list));
-        JOptionPane.showMessageDialog(null, "Data yang di Temukan");
+        informasi("Data yang di Temukan "+list.size());
         komponen("cari");
     }
 
@@ -182,7 +183,7 @@ public class kasirController {
 
         if (daftar == 0) {
             komponen("daftar");
-            JOptionPane.showMessageDialog(null, "Masukkan Data");
+            informasi("Masukkan Data");
             daftar = 1;
             kasirpanel.getTxt_userid().setText(user.getUserid());
 
@@ -193,21 +194,21 @@ public class kasirController {
             user.setPassword(kasirpanel.getTxt_pass().getText());
 
             if (user.getNama().equals("")) {
-                JOptionPane.showMessageDialog(null, "Maaf, Nama Buku belum diisi !");
+                warning("Maaf, Nama Buku belum diisi !");
                 kasirpanel.getTxt_nama().requestFocus();
             } else if (user.getTtl().equals("")) {
-                JOptionPane.showMessageDialog(null, "Maaf, Jenis Buku belum diisi !");
+                warning("Maaf, Jenis Buku belum diisi !");
                 kasirpanel.getJtanggal().requestFocus();
             } else if (user.getPassword().equals("")) {
-                JOptionPane.showMessageDialog(null, "Maaf, Harga Buku belum diisi !");
+                warning("Maaf, Harga Buku belum diisi !");
                 kasirpanel.getTxt_pass().requestFocus();
             } else {
                 if (implementkasir.insert(user.getUserid(), user.getNama(), user.getTtl(), user.getPassword())) {
-                    JOptionPane.showMessageDialog(null, "Data Telah di Tambahkan");
+                    informasi("Data Telah di Tambahkan");
                     daftar = 0;
                     komponen("segarkan");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Data Gagal di Tambahkan");
+                    informasi("Data Gagal di Tambahkan");
                 }
             }
 
@@ -217,15 +218,14 @@ public class kasirController {
 
     public void tombolhapus() {
         user.setUserid(kasirpanel.getTxt_userid().getText());
-
-        if (JOptionPane.showConfirmDialog(null, "Apakah Anda yakin akan menghapus dataini ?", "Warning", 2) == JOptionPane.YES_OPTION) {
+        
+        if (konfirmasi("Apakah Anda yakin akan menghapus dataini ?")) {
             if (implementkasir.delete(user.getUserid())) {
-                JOptionPane.showMessageDialog(null, "Data Telah Di Hapus");
+                informasi("Data Telah Di Hapus");
                 komponen("segarkan");
             } else {
                 JOptionPane.showMessageDialog(null, "Data Gagal Di Hapus");
             }
-
         }
 
     }
@@ -237,12 +237,12 @@ public class kasirController {
         user.setTtl((format.format(kasirpanel.getJtanggal().getDate())));
         user.setPassword(kasirpanel.getTxt_pass().getText().toString());
 
-        if (JOptionPane.showConfirmDialog(null, "Apakah Anda yakin akan merubah data ini ?", "Warning", 2) == JOptionPane.YES_OPTION) {
+        if (konfirmasi("Apakah Anda yakin akan merubah data ini ?")) {
             if (implementkasir.update(user.getUserid(), user.getNama(), user.getTtl(), user.getPassword())) {
-                JOptionPane.showMessageDialog(null, "Data Telah di Ubah");
+                informasi("Data Telah di Ubah");
                 komponen("segarkan");
             } else {
-                JOptionPane.showMessageDialog(null, "Data Gagal di Ubah");
+                informasi("Data Gagal di Ubah");
             }
         }
 

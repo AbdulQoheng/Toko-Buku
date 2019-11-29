@@ -5,6 +5,7 @@
  */
 package com.toko_buku.controller;
 
+import com.toko_buku.model.cetak;
 import com.toko_buku.model.dao.penjualanDAO;
 import com.toko_buku_view.admin.Penjualan;
 import com.toko_buku.model.implement.implementPenjualan;
@@ -18,13 +19,12 @@ import com.toko_buku_view.admin.DetailPenjualan;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author qoheng
  */
-public class penjualanController {
+public class penjualanController extends cetak {
 
     Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
     private List<penjualan> list;
@@ -35,12 +35,13 @@ public class penjualanController {
     public penjualanController(Penjualan penjualanpanel) {
         this.penjualanpanel = penjualanpanel;
         implementPenjualan = new penjualanDAO();
+        penjualan = new penjualan();
         if (login.getStatus().equals("aktif")) {
             lokasiform();
             IsiTabel();
             komponen("awal");
         } else {
-            JOptionPane.showMessageDialog(null, "Anda belum login");
+            warning("Anda belum login");
             new FormLogin().setVisible(true);
             this.penjualanpanel.setVisible(false);
         }
@@ -105,16 +106,17 @@ public class penjualanController {
         komponen("klik");
         try {
             int row = penjualanpanel.getTabelPenjualan().rowAtPoint(evt.getPoint());
+            if (row > - 1) {
+                penjualan.setKodeStruk(penjualanpanel.getTabelPenjualan().getValueAt(row, 0).toString());
+                penjualan.setTanggal(penjualanpanel.getTabelPenjualan().getValueAt(row, 1).toString());
+                penjualan.setWaktu(penjualanpanel.getTabelPenjualan().getValueAt(row, 2).toString());
+                penjualan.setUserKasir(penjualanpanel.getTabelPenjualan().getValueAt(row, 6).toString());
 
-            penjualan.setKodeStruk(penjualanpanel.getTabelPenjualan().getValueAt(row, 0).toString());
-            penjualan.setTanggal(penjualanpanel.getTabelPenjualan().getValueAt(row, 1).toString());
-            penjualan.setWaktu(penjualanpanel.getTabelPenjualan().getValueAt(row, 2).toString());
-            penjualan.setUserKasir(penjualanpanel.getTabelPenjualan().getValueAt(row, 3).toString());
-
-            penjualanpanel.getTxt_idStruk().setText(penjualan.getKodeStruk());
-            penjualanpanel.getTxt_tanggal().setText(penjualan.getTanggal());
-            penjualanpanel.getTxt_waktu().setText(penjualan.getWaktu());
-            penjualanpanel.getTxt_user().setText(penjualan.getUserKasir());
+                penjualanpanel.getTxt_idStruk().setText(penjualan.getKodeStruk());
+                penjualanpanel.getTxt_tanggal().setText(penjualan.getTanggal());
+                penjualanpanel.getTxt_waktu().setText(penjualan.getWaktu());
+                penjualanpanel.getTxt_user().setText(penjualan.getUserKasir());
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -139,7 +141,7 @@ public class penjualanController {
         list = implementPenjualan.getcari(penjualan.getKodeStruk(), penjualan.getUserKasir());
 
         penjualanpanel.getTabelPenjualan().setModel(new TabelModelPenjualan(list));
-        JOptionPane.showMessageDialog(null, "Data yang di Temukan ");
+        informasi("Data yang di Temukan " + list.size());
 
         komponen("cari");
 
@@ -153,11 +155,12 @@ public class penjualanController {
 
     public void tombolhapus() {
         penjualan.setKodeStruk(penjualanpanel.getTxt_idStruk().getText().toString());
-        if (JOptionPane.showConfirmDialog(null, "Apakah Anda yakin akan menghapus dataini ?", "Warning", 2) == JOptionPane.YES_OPTION) {
+        if (konfirmasi("Apakah Anda yakin akan menghapus dataini ?")) {
             if (implementPenjualan.delete(penjualan.getKodeStruk())) {
-                JOptionPane.showMessageDialog(null, "Data Berhasil di Hapus");
+                informasi("Data Berhasil di Hapus");
+                komponen("segarkan");
             } else {
-                JOptionPane.showMessageDialog(null, "Data gagal di Hapus");
+                informasi("Data gagal di Hapus");
             }
         }
 

@@ -14,22 +14,21 @@ import javax.swing.table.AbstractTableModel;
  * @author qoheng
  */
 public class TabelModelPenjualan extends AbstractTableModel {
+
     private List<penjualan> list;
 
     public TabelModelPenjualan(List<penjualan> list) {
         this.list = list;
     }
-    
-    
-    
-   @Override
+
+    @Override
     public int getRowCount() {
         return list.size();
     }
 
     @Override
     public int getColumnCount() {
-        return 4;
+        return 7;
     }
 
     @Override
@@ -42,6 +41,12 @@ public class TabelModelPenjualan extends AbstractTableModel {
             case 2:
                 return list.get(rowIndex).getWaktu();
             case 3:
+                return list.get(rowIndex).getTotalbayar();
+            case 4:
+                return list.get(rowIndex).getUangbayar();
+            case 5:
+                return list.get(rowIndex).getUangkembali();
+            case 6:
                 return list.get(rowIndex).getUserKasir();
             default:
                 return null;
@@ -58,10 +63,16 @@ public class TabelModelPenjualan extends AbstractTableModel {
             case 2:
                 return "Waktu";
             case 3:
+                return "Total Bayar";
+            case 4:
+                return "Tunai";
+            case 5:
+                return "Uang Kembali";
+            case 6:
                 return "User Kasir";
             default:
                 return null;
         }
     }
-    
+
 }

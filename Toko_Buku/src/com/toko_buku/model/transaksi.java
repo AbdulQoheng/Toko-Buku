@@ -17,6 +17,7 @@ public class transaksi {
     private String jumlah;
     private String totalharga;
 
+
     public String getKodebuku() {
         return kodebuku;
     }
@@ -64,6 +65,9 @@ public class transaksi {
     public void setTotalharga() {
         int totalharga1 = Integer.parseInt(harga)*Integer.parseInt(jumlah);
         this.totalharga = String.valueOf(totalharga1);
+    }
+    public void setTotalharga(String totalharga) {
+        this.totalharga = totalharga;
     }
     
 }
