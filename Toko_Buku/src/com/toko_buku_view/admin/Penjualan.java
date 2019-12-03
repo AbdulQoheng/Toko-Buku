@@ -109,6 +109,11 @@ public class Penjualan extends javax.swing.JFrame {
         jLabel3.setText("ID Struk");
 
         btn_kembali.setText("Kembali");
+        btn_kembali.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_kembaliActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Tanggal");
 
@@ -136,7 +141,7 @@ public class Penjualan extends javax.swing.JFrame {
             }
         });
 
-        btn_detail.setText("Detel");
+        btn_detail.setText("Rincian");
         btn_detail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_detailActionPerformed(evt);
@@ -192,14 +197,13 @@ public class Penjualan extends javax.swing.JFrame {
                                             .addComponent(txt_tanggal, javax.swing.GroupLayout.Alignment.LEADING))
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
+                                .addComponent(btn_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(btn_cari, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(26, 26, 26)
                                 .addComponent(btn_hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btn_detail, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(17, 17, 17)))
+                                .addComponent(btn_detail, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)))
                         .addGap(48, 48, 48)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -275,6 +279,11 @@ public class Penjualan extends javax.swing.JFrame {
         // TODO add your handling code here:
         controllerpenjualan.tombolhapus();
     }//GEN-LAST:event_btn_hapusActionPerformed
+
+    private void btn_kembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_kembaliActionPerformed
+        // TODO add your handling code here:
+        controllerpenjualan.kembali();
+    }//GEN-LAST:event_btn_kembaliActionPerformed
 
     /**
      * @param args the command line arguments

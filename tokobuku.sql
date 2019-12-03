@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 25, 2019 at 06:49 PM
+-- Generation Time: Dec 03, 2019 at 03:13 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -50,7 +50,7 @@ INSERT INTO `admin` (`useradmin`, `nama`, `ttl`, `password`) VALUES
 
 CREATE TABLE `buku` (
   `kodebuku` varchar(10) NOT NULL,
-  `nama_buku` varchar(20) DEFAULT NULL,
+  `nama_buku` varchar(50) DEFAULT NULL,
   `jenis_buku` varchar(20) DEFAULT NULL,
   `harga` int(11) DEFAULT NULL,
   `stok` int(11) DEFAULT NULL,
@@ -62,10 +62,9 @@ CREATE TABLE `buku` (
 --
 
 INSERT INTO `buku` (`kodebuku`, `nama_buku`, `jenis_buku`, `harga`, `stok`, `bukuke`) VALUES
-('BKU1', 'narutotuo', 'komik', 600005, 50, 1),
-('BKU2', 'naruto', 'komik', 10000, 100, 2),
-('BKU3', 'one piece', 'cerita', 50000, 10000, 3),
-('BKU4', 'sidu', 'buku tulis', 2000, 50, 4);
+('BKU1', 'SIDU', 'Buku Tulis', 2500, 198, 1),
+('BKU2', 'Sebuah Seni Untuk Bersikap Bodo Amat', 'Novel', 30000, 199, 2),
+('BKU3', 'Konspirasi Alam Semesta', 'Novel', 450000, 99, 3);
 
 -- --------------------------------------------------------
 
@@ -86,7 +85,9 @@ CREATE TABLE `detail_struck` (
 --
 
 INSERT INTO `detail_struck` (`iddetail`, `jumlah`, `total_harga`, `kodebuku`, `kodestruck`) VALUES
-(1, 5, 25000, 'BKU3', 'STR1');
+(50, 2, 5000, 'BKU1', 'STR1'),
+(51, 1, 30000, 'BKU2', 'STR1'),
+(52, 1, 450000, 'BKU3', 'STR1');
 
 -- --------------------------------------------------------
 
@@ -107,13 +108,8 @@ CREATE TABLE `kasir` (
 --
 
 INSERT INTO `kasir` (`userkasir`, `nama`, `ttl`, `password`, `kasirke`) VALUES
-('KSR2', 'Lingga Wahtu Rochim', '07/4/2000', 'jenengkudew1', 2),
-('KSR3', 'ABD. Qohar Agus Maulana', '08/30/1997', 'jenengmu', 3),
-('KSR4', 'Andy', '11/5/2019', 'owalah', 4),
-('KSR5', 'Fara', '08/3/1945', 'farabaik', 5),
-('KSR6', 'berlian', '11/7/2019', 'oke', 6),
-('KSR7', 'berlian', '11/1/2019', 'heeh', 7),
-('KSR8', '234567', '11/7/2019', 'uuuu', 8);
+('KSR2', 'Lingga Wahtu Rochim', '04/7/2000', 'jenengkudew', 2),
+('KSR3', 'ABD. Qohar Agus Maulana', '08/30/1997', 'jenengmu', 3);
 
 -- --------------------------------------------------------
 
@@ -125,6 +121,9 @@ CREATE TABLE `struk` (
   `kodestruk` varchar(10) NOT NULL,
   `tanggal` varchar(10) DEFAULT NULL,
   `waktu` varchar(10) DEFAULT NULL,
+  `total_bayar` int(11) NOT NULL,
+  `uangbayar` int(11) NOT NULL,
+  `uangkembali` int(11) NOT NULL,
   `userkasir` varchar(10) NOT NULL,
   `strukke` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -133,8 +132,8 @@ CREATE TABLE `struk` (
 -- Dumping data for table `struk`
 --
 
-INSERT INTO `struk` (`kodestruk`, `tanggal`, `waktu`, `userkasir`, `strukke`) VALUES
-('STR1', '07/4/2000', '20:20', 'KSR2', 1);
+INSERT INTO `struk` (`kodestruk`, `tanggal`, `waktu`, `total_bayar`, `uangbayar`, `uangkembali`, `userkasir`, `strukke`) VALUES
+('STR1', '12/3/2019', '21:12:25', 485000, 500000, 15000, 'KSR3', 1);
 
 --
 -- Indexes for dumped tables
@@ -181,7 +180,7 @@ ALTER TABLE `struk`
 -- AUTO_INCREMENT for table `detail_struck`
 --
 ALTER TABLE `detail_struck`
-  MODIFY `iddetail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `iddetail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- Constraints for dumped tables

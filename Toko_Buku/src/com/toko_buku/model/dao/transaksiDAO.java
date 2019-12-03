@@ -20,12 +20,12 @@ import java.util.List;
  * @author qoheng
  */
 public class transaksiDAO implements implementTransaksi{
-    private List<buku> list;
+    private List<String> list;
     private List<transaksi> listtransaksi;
     
     @Override
-    public List<buku> ambilnamabuku() {
-        list = new ArrayList<buku>();
+    public List<String> ambilnamabuku() {
+        list = new ArrayList<String>();
         try {
             PreparedStatement statement = koneksi.koneksiDB().prepareStatement(
             "select nama_buku from buku");
@@ -33,9 +33,7 @@ public class transaksiDAO implements implementTransaksi{
             ResultSet result = statement.executeQuery();
             
             while (result.next()) {
-                buku buku = new buku();
-                buku.setNama(result.getString("nama_buku"));
-                list.add(buku);
+                list.add(result.getString("nama_buku"));
             }
 
             return list;
@@ -116,8 +114,8 @@ public class transaksiDAO implements implementTransaksi{
             statement.setString(6, uangkembali);
             statement.setString(7, userkasir);
             statement.setInt(8, bukuke);
-            
             statement.executeUpdate();
+            
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -139,9 +137,39 @@ public class transaksiDAO implements implementTransaksi{
             
             statement.executeUpdate();
             
+            statement = koneksi.koneksiDB().prepareStatement(
+            "update buku set stok = stok - ? where kodebuku = ?");
+            
+            
+            statement.setString(1, jumlah);
+            statement.setString(2, kodebuku);
+            statement.executeUpdate();
+            
         } catch (Exception e) {
             e.printStackTrace();
             
         }
+    }
+
+    @Override
+    public String ambilstok(String namabarang) {
+        try {
+            PreparedStatement statement = koneksi.koneksiDB().prepareStatement(
+            "select stok from buku where nama_buku = '"+namabarang+"'");
+            
+            ResultSet result = statement.executeQuery();
+            
+            if (result.next()) {
+                transaksi tr = new transaksi();
+                tr.setStok(result.getString("stok"));
+                return tr.getStok();
+            }
+
+             
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

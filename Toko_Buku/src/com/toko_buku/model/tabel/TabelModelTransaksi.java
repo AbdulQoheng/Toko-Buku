@@ -5,7 +5,6 @@
  */
 package com.toko_buku.model.tabel;
 
-import com.toko_buku.model.buku;
 import com.toko_buku.model.transaksi;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;

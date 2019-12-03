@@ -42,6 +42,7 @@ public class CetakstrukController extends cetak {
     }
 
     public void awal() {
+        cetakpanel.getTampilan().setEditable(false);
         String tengah = "";
         setTampilanawal("\n\t  \t" + login.getNamatoko() + "\n "
                 + "=============================================\n"

@@ -29,6 +29,10 @@ public class FormTabelKasir extends javax.swing.JFrame {
     public JTextField getTxt_totalharga() {
         return txt_totalharga;
     }
+
+    public JLabel getTxt_stok() {
+        return txt_stok;
+    }
     
     
 
@@ -100,6 +104,7 @@ public class FormTabelKasir extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txt_tunai = new javax.swing.JTextField();
         txt_kembali = new javax.swing.JTextField();
+        txt_stok = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,6 +113,19 @@ public class FormTabelKasir extends javax.swing.JFrame {
         jLabel3.setText("Nama Buku");
 
         cm_buku.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cm_buku.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cm_bukuMousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cm_bukuMouseClicked(evt);
+            }
+        });
+        cm_buku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cm_bukuActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("jumlah");
 
@@ -148,6 +166,11 @@ public class FormTabelKasir extends javax.swing.JFrame {
         txt_kodekasir.setText("jLabel5");
 
         jButton3.setText("Kembali");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         txt_waktu.setText("jLabel6");
 
@@ -169,6 +192,8 @@ public class FormTabelKasir extends javax.swing.JFrame {
                 txt_tunaiActionPerformed(evt);
             }
         });
+
+        txt_stok.setText("stok");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -209,7 +234,9 @@ public class FormTabelKasir extends javax.swing.JFrame {
                                     .addComponent(cm_tanggal, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                                     .addComponent(cm_buku, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jTextField1))
-                                .addGap(355, 355, 355))
+                                .addGap(26, 26, 26)
+                                .addComponent(txt_stok, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(162, 162, 162))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
@@ -241,7 +268,8 @@ public class FormTabelKasir extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(cm_buku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cm_buku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_stok))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -297,40 +325,58 @@ public class FormTabelKasir extends javax.swing.JFrame {
         controller.jumlahuangkembali();
     }//GEN-LAST:event_txt_tunaiActionPerformed
 
+    private void cm_bukuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cm_bukuMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cm_bukuMouseClicked
+
+    private void cm_bukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cm_bukuActionPerformed
+        controller.stok();
+    }//GEN-LAST:event_cm_bukuActionPerformed
+
+    private void cm_bukuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cm_bukuMousePressed
+        // TODO add your handling code here:
+     
+    }//GEN-LAST:event_cm_bukuMousePressed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        controller.kembali();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(FormTabelKasir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(FormTabelKasir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(FormTabelKasir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(FormTabelKasir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new FormTabelKasir().setVisible(true);
-//            }
-//        });
-//    }
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(FormTabelKasir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FormTabelKasir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FormTabelKasir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FormTabelKasir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new FormTabelKasir().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cm_buku;
@@ -351,6 +397,7 @@ public class FormTabelKasir extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txt_kembali;
     private javax.swing.JLabel txt_kodekasir;
+    private javax.swing.JLabel txt_stok;
     private javax.swing.JTextField txt_totalharga;
     private javax.swing.JTextField txt_tunai;
     private javax.swing.JLabel txt_waktu;

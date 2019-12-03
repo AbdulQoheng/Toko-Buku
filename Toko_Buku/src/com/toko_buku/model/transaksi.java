@@ -16,7 +16,15 @@ public class transaksi {
     private String harga;
     private String jumlah;
     private String totalharga;
+    private String stok;
 
+    public String getStok() {
+        return stok;
+    }
+
+    public void setStok(String stok) {
+        this.stok = stok;
+    }
 
     public String getKodebuku() {
         return kodebuku;

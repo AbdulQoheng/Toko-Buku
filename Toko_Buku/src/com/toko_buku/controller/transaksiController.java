@@ -5,7 +5,6 @@
  */
 package com.toko_buku.controller;
 
-import com.toko_buku.model.buku;
 import com.toko_buku.model.cetak;
 import com.toko_buku.model.dao.transaksiDAO;
 import com.toko_buku.model.implement.implementTransaksi;
@@ -24,6 +23,7 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.Timer;
 
 /**
@@ -35,7 +35,8 @@ public class transaksiController extends cetak {
     Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
     private static FormTabelKasir transaksipanel;
     private static implementTransaksi implementtransaksi;
-    private List<buku> list;
+    private List<String> listNama;
+    private DefaultComboBoxModel modelcombo;
     private List<transaksi> listtransaksi;
     private List<penjualan> listpenjualan;
     private transaksi transaksi;
@@ -49,6 +50,7 @@ public class transaksiController extends cetak {
         transaksi = new transaksi();
         penjualan = new penjualan();
         listpenjualan = new ArrayList<>();
+        
         lokasiform();
         tampilanawal();
         setwaktu();
@@ -62,14 +64,20 @@ public class transaksiController extends cetak {
     }
 
     public void tampilanawal() {
-        list = implementtransaksi.ambilnamabuku();
-        transaksipanel.getCm_buku().removeAllItems();
-        for (int i = 0; i < list.size(); i++) {
-            transaksipanel.getCm_buku().addItem(list.get(i).getNama());
-        }
+        listNama = new ArrayList<>();
+        listNama = implementtransaksi.ambilnamabuku();
+        String[] listAray = listNama.toArray(new String[listNama.size()]);
+        modelcombo = new DefaultComboBoxModel(listAray);
+        transaksipanel.getCm_buku().setModel(modelcombo);
         transaksipanel.getTxt_kodekasir().setText(login.getUserid());
-        
         transaksipanel.getTabeltransaksi().setModel(new TabelModelTransaksi(listtransaksi));
+        stok();
+    }
+    
+    public void stok(){
+        String barang = transaksipanel.getCm_buku().getSelectedItem().toString();
+        transaksi.setStok(implementtransaksi.ambilstok(barang));
+        transaksipanel.getTxt_stok().setText(transaksi.getStok());
     }
 
     private final void setwaktu() {
@@ -110,11 +118,19 @@ public class transaksiController extends cetak {
     }
 
     public void tomboltambahkan() {
-        transaksi.setNama(transaksipanel.getCm_buku().getSelectedItem().toString());
+        int stok = Integer.parseInt(transaksipanel.getTxt_stok().getText());
+        int jumlah = Integer.parseInt(transaksipanel.getTxt_jumlah().getText());
+        if(jumlah<stok){
+            transaksi.setNama(transaksipanel.getCm_buku().getSelectedItem().toString());
         transaksi.setJumlah(transaksipanel.getTxt_jumlah().getText());
         listtransaksi.addAll(implementtransaksi.getAll(transaksi.getNama(), transaksi.getJumlah()));
         transaksipanel.getTabeltransaksi().setModel(new TabelModelTransaksi(listtransaksi));
         hitungan();
+        }else{
+            warning("Jumlah melebihi stok!!");
+     
+        }
+        
 
     }
 

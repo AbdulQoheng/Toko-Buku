@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface implementTransaksi {
     
-    public List<buku> ambilnamabuku ();
+    public List<String> ambilnamabuku ();
     
     public List<transaksi> getAll(String kodebu, String jumlah);
     
@@ -24,5 +24,7 @@ public interface implementTransaksi {
     public void insertstruk(String kodestruk, String tanggal, String waktu, String userkasir, String totalbayar, String uangbayar, String uangkembali);
     
     public void insertdetail(String jumlah, String totalharga, String kodebuku, String kodestruk);
+    
+    public String ambilstok(String namabarang);
     
 }

@@ -147,7 +147,7 @@ public class Kasir extends javax.swing.JFrame {
             }
         });
 
-        btn_rubah.setText("Rubah");
+        btn_rubah.setText("Ubah");
         btn_rubah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_rubahActionPerformed(evt);

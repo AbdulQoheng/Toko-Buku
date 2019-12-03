@@ -166,4 +166,9 @@ public class penjualanController extends cetak {
 
     }
 
+    public void kembali() {
+        new FormAdmin().setVisible(true);
+        penjualanpanel.setVisible(false);
+    }
+
 }

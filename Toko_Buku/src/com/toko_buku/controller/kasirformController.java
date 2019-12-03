@@ -73,8 +73,10 @@ public class kasirformController extends cetak{
         kasirpanel.setVisible(false);
     }
     
-    public void keluar(){
-        System.exit(0);
+    public void keluar() {
+        if(konfirmasi("Apakan Anda yakin ingin keluar ?")){
+            System.exit(0);
+        }
     }
 
     public void tombolkasir() {
